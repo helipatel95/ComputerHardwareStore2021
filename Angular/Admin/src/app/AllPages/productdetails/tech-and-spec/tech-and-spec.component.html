@@ -1,0 +1,43 @@
+<form [formGroup]="techInfoForm">
+    <div class="row">
+        <div class="col-md-4">
+            <label class="lablecss">Title</label>
+            <input type="text " formControlName="techTitle" class="form-control inputcss" />
+            <div *ngIf="submitted && f.techTitle.errors" style="color: red">
+                <div *ngIf="f.techTitle.errors.required">
+                    <p class="errormsgcss">Title is Required</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label class="lablecss">Details</label>
+            <input type="text " formControlName="techSpec" class="form-control inputcss" />
+            <div *ngIf="submitted && f.techSpec.errors" style="color: red">
+                <div *ngIf="f.techSpec.errors.required">
+                    <p class="errormsgcss">Details is Required</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 endtext">
+            <label> </label>
+            <button type="submit" (click)="Submitform()" class="btn btn-warning">
+        Add
+      </button>
+        </div>
+    </div>
+</form>
+<div style="margin-top: 20px">
+    <ng-container *ngIf="moreinfo != 0">
+        <div class="row" *ngFor="let info of techinfo">
+            <div class="col-md-4 centertext">
+                <p>{{ info.techTitle }}</p>
+            </div>
+            <div class="col-md-4 centertext">
+                <p>{{ info.techSpec }}</p>
+            </div>
+            <div class="col-md-2 centertext">
+                <mat-icon aria-hidden="false" (click)="delete(info)" aria-label="Example home icon">delete</mat-icon>
+            </div>
+        </div>
+    </ng-container>
+</div>

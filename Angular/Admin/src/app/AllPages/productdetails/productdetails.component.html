@@ -1,0 +1,183 @@
+<div class="container-fluid" style="margin-top: 2%">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="cardmain">
+                <div class="row">
+                    <div class="titleform">
+                        <b>Product</b>
+                    </div>
+                </div>
+                <div class="row">
+                    <form [formGroup]="productForm" style="padding: 2%">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="lablecss">Product Name</label>
+                                <input type="text " formControlName="productName" class="form-control inputcss" />
+                                <div *ngIf="submitted && f.productName.errors" style="color: red">
+                                    <div *ngIf="f.productName.errors.required">
+                                        <p class="errormsgcss">Product Name is required</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="lablecss">Produt Brand</label>
+                                <input type="text " formControlName="produtBrand" class="form-control inputcss" />
+                                <div *ngIf="submitted && f.produtBrand.errors" style="color: red">
+                                    <div *ngIf="f.produtBrand.errors.required">
+                                        <p class="errormsgcss">Produt Brand is required</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="lablecss">Produt Category</label>
+                                <select formControlName="categoryId" class="form-select" aria-label="Default select example">
+                  <option
+                    *ngFor="let category of categoryArray"
+                    [ngValue]="category.id"
+                  >
+                    {{ category.categoryname }}
+                  </option>
+                </select>
+                                <div *ngIf="submitted && f.categoryId.errors" style="color: red">
+                                    <div *ngIf="f.categoryId.errors.required">
+                                        <p class="errormsgcss">Please Select Category</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="lablecss">Model Number</label>
+                                <input type="text " formControlName="produtModelNo" class="form-control inputcss" />
+                                <div *ngIf="submitted && f.produtModelNo.errors" style="color: red">
+                                    <div *ngIf="f.produtModelNo.errors.required">
+                                        <p class="errormsgcss">Model No is Required</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="lablecss">Product Color</label>
+                                <input type="text " formControlName="productcolor" class="form-control inputcss" />
+                                <div *ngIf="submitted && f.productcolor.errors" style="color: red">
+                                    <div *ngIf="f.productcolor.errors.required">
+                                        <p class="errormsgcss">Product Color is required</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="lablecss">Product Price</label>
+                                <input type="text " formControlName="productPrice" class="form-control inputcss" />
+                                <div *ngIf="submitted && f.productPrice.errors" style="color: red">
+                                    <div *ngIf="f.productPrice.errors.required">
+                                        <p class="errormsgcss">Product Price is required</p>
+                                    </div>
+                                    <div *ngIf="f.productPrice.errors.pattern">
+                                        Product Price only Number
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="exampleFormControlTextarea1">Product description</label
+                >
+                <textarea
+                  class="form-control"
+                  formControlName="productDescription"
+                  rows="3"
+                ></textarea>
+                <div
+                  *ngIf="submitted && f.productDescription.errors"
+                  style="color: red"
+                >
+                  <div *ngIf="f.productDescription.errors.required">
+                    <p class="errormsgcss">Product Description is Required</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 2%">
+    <div class="col-md-12">
+      <div class="cardmain">
+        <div class="row">
+          <div class="titleform">
+            <b>More Information</b>
+          </div>
+        </div>
+        <div class="row" style="padding: 2%">
+          <app-more-info-page
+            [moreinfo]="moreInfo"
+            (moreInfoChanged)="moreInfoChangedHandler($event)"
+          >
+          </app-more-info-page>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 2%">
+    <div class="col-md-12">
+      <div class="cardmain">
+        <div class="row">
+          <div class="titleform">
+            <b>Tech And Specs</b>
+          </div>
+        </div>
+        <div class="row" style="padding: 2%">
+          <app-tech-and-spec
+            [techinfo]="techInfo"
+            (techInfoChanged)="techInfoChangedHandler($event)"
+          >
+          </app-tech-and-spec>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 5%; padding-bottom: 3%">
+    <div class="col-md-9"></div>
+    <div class="col-md-3" style="text-align: right">
+      <button type="submit" (click)="Submitform()" class="btn btn-primary">
+        Update All Product Info
+      </button>
+    </div>
+  </div>
+  <!-- 
+    
+  <div class="row" style="margin-top: 2%">
+    <div class="col-md-12">
+      <div class="cardmain">
+        <div class="row">
+          <div class="titleform">
+            <b>Manufacture Info</b>
+          </div>
+        </div>
+        <div class="row"></div>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 2%">
+    <div class="col-md-12">
+      <div class="cardmain">
+        <div class="row">
+          <div class="titleform">
+            <b>Product Images</b>
+          </div>
+        </div>
+        <div class="row"></div>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 2%">
+    <div class="col-md-12">
+      <div class="cardmain">
+        <div class="row">
+          <div class="titleform">
+            <b>Tags</b>
+          </div>
+        </div>
+        <div class="row"></div>
+      </div>
+    </div>
+  </div> -->
+</div>

@@ -1,0 +1,162 @@
+<div class="container-fluid" style="margin-top: 3%">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="cardmain">
+                <div class="titleform">
+                    <b>Product</b>
+                </div>
+                <hr />
+                <form [formGroup]="productForm" class="padding5">
+                    <div class="form-group col-md-12 mb-3">
+                        <label class="lablecss">Product Name</label>
+                        <input type="text " formControlName="productName" class="form-control inputcss" />
+                        <div *ngIf="submitted && f.productName.errors" style="color: red">
+                            <div *ngIf="f.productName.errors.required">
+                                <p class="errormsgcss">Product Name is required</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12 mb-3">
+                        <label class="lablecss">Produt Brand</label>
+                        <input type="text " formControlName="produtBrand" class="form-control inputcss" />
+                        <div *ngIf="submitted && f.produtBrand.errors" style="color: red">
+                            <div *ngIf="f.produtBrand.errors.required">
+                                <p class="errormsgcss">Produt Brand is required</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12 mb-3">
+                        <label class="lablecss">Produt Category</label>
+                        <select formControlName="categoryId" class="form-select" aria-label="Default select example">
+              <option
+                *ngFor="let category of categoryArray"
+                [ngValue]="category.id"
+              >
+                {{ category.categoryname }}
+              </option>
+            </select>
+                        <div *ngIf="submitted && f.categoryId.errors" style="color: red">
+                            <div *ngIf="f.categoryId.errors.required">
+                                <p class="errormsgcss">Please Select Category</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12 mb-3">
+                        <label class="lablecss">Model Number</label>
+                        <input type="text " formControlName="produtModelNo" class="form-control inputcss" />
+                        <div *ngIf="submitted && f.produtModelNo.errors" style="color: red">
+                            <div *ngIf="f.produtModelNo.errors.required">
+                                <p class="errormsgcss">Model No is Required</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12 mb-3">
+                        <label class="lablecss">Product Color</label>
+                        <input type="text " formControlName="productcolor" class="form-control inputcss" />
+                        <div *ngIf="submitted && f.productcolor.errors" style="color: red">
+                            <div *ngIf="f.productcolor.errors.required">
+                                <p class="errormsgcss">Product Color is required</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12 mb-3">
+                        <label class="lablecss">Product Price</label>
+                        <input type="text " formControlName="productPrice" class="form-control inputcss" />
+                        <div *ngIf="submitted && f.productPrice.errors" style="color: red">
+                            <div *ngIf="f.productPrice.errors.required">
+                                <p class="errormsgcss">Product Price is required</p>
+                            </div>
+                            <div *ngIf="f.productPrice.errors.pattern">
+                                Product Price only Number
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12 mb-3">
+                        <label for="exampleFormControlTextarea1">Product description</label>
+                        <textarea class="form-control" formControlName="productDescription" rows="3"></textarea>
+                        <div *ngIf="submitted && f.productDescription.errors" style="color: red">
+                            <div *ngIf="f.productDescription.errors.required">
+                                <p class="errormsgcss">Product Description is Required</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" (click)="Submitform()" class="btn btn-warning">
+            Add
+          </button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12" style="text-align: right">
+                    <mat-form-field appearance="outline" style="margin-top: 2%">
+                        <mat-label>Search</mat-label>
+                        <input matInput [(ngModel)]="filter" (keyup)="applyFilter($event)" placeholder="Placeholder" />
+                        <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="cardmain">
+                <mat-table [dataSource]="dataSource" matSort style="width: 100%">
+                    <ng-container matColumnDef="Sno">
+                        <mat-header-cell *matHeaderCellDef>Sno.</mat-header-cell>
+                        <mat-cell *matCellDef="let element; let i = index">
+                            {{ i + 1 }}
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Product Name">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Product Name</mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{ element.productName }}
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Model No">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Model No</mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{ element.produtModelNo }}
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Price">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Price</mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{ element.productPrice }}
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Categories">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Categories</mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{ element.categoryName }}
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Active">
+                        <mat-header-cell *matHeaderCellDef>Active</mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <mat-slide-toggle class="example-margin" (change)="togglechange($event, element)" [checked]="element.isActive">
+                            </mat-slide-toggle>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Action">
+                        <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <mat-icon aria-hidden="false" (click)="editdata(element)" aria-label="Example home icon">edit</mat-icon>
+                            <mat-icon aria-hidden="false" (click)="delete(element)" aria-label="Example home icon">delete</mat-icon>
+                        </mat-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+                    <div *matNoDataRow style="
+              width: 100%;
+              text-align: center;
+              color: red;
+              margin-top: 15px;
+            ">
+                        No data Found
+                    </div>
+                </mat-table>
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

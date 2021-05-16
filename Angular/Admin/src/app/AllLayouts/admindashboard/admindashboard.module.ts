@@ -8,9 +8,20 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CategoryComponent } from 'src/app/AllPages/category/category.component';
 import { FormsModule } from '@angular/forms';
+import { ProductsComponent } from 'src/app/AllPages/products/products.component';
+import { ProductdetailsComponent } from 'src/app/AllPages/productdetails/productdetails.component';
+import { MoreInfoPageComponent } from 'src/app/AllPages/productdetails/more-info-page/more-info-page.component';
+import { TechAndSpecComponent } from 'src/app/AllPages/productdetails/tech-and-spec/tech-and-spec.component';
 
 @NgModule({
-  declarations: [AdminHomeComponent, CategoryComponent],
+  declarations: [
+    AdminHomeComponent,
+    CategoryComponent,
+    ProductsComponent,
+    ProductdetailsComponent,
+    MoreInfoPageComponent,
+    TechAndSpecComponent,
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,

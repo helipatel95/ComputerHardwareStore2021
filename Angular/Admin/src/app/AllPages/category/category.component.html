@@ -1,10 +1,4 @@
-<p class="mt-4 px-2" routerLink="/Admin">
-    <i class="fa fa-chevron-left px-2" aria-hidden="true"></i>
-    <a style="cursor: pointer">
-        <b><u>Back to Home Page</u></b>
-    </a>
-</p>
-<div class="container-fluid">
+<div class="container-fluid" style="margin-top: 3%">
     <div class="row">
         <div class="col-md-4">
             <div class="cardmain">
@@ -21,7 +15,7 @@
               }" />
                         <div *ngIf="submitted && f.categoryName.errors" class="invalid-feedback">
                             <div *ngIf="f.categoryName.errors.required">
-                                Deal Name is required
+                                Category Name is required
                             </div>
                         </div>
                     </div>
