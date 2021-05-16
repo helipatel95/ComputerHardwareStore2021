@@ -87,7 +87,7 @@ export class ProductdetailsComponent implements OnInit {
       .update(this.productData)
       .then((result) => {
         let url = '/Admin/Products';
-        this.router.navigate([url]);
+        this.router.navigate([url], { replaceUrl: true });
       })
       .catch((err) => {});
   }

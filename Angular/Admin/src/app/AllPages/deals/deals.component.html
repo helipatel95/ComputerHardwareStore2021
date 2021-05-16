@@ -1,0 +1,129 @@
+<div class="container-fluid" style="margin-top: 3%">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="cardmain">
+                <div class="titleform">
+                    <b>Deals</b>
+                </div>
+                <hr />
+                <form [formGroup]="dealForm" #formDirective="ngForm" class="padding5">
+                    <div class="form-group col-md-12 mb-3">
+                        <label class="lablecss">Deal Name</label>
+                        <input type="text " formControlName="dealTitle" class="form-control inputcss" />
+                        <div *ngIf="submitted && f.dealTitle.errors" style="color: red">
+                            <div *ngIf="f.dealTitle.errors.required">
+                                <p class="errormsgcss">Deal Name is required</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12 mb-3">
+                        <label for="exampleFormControlTextarea1">Deal Description</label>
+                        <textarea class="form-control" formControlName="dealDescription" rows="3"></textarea>
+                        <div *ngIf="submitted && f.dealDescription.errors" style="color: red">
+                            <div *ngIf="f.dealDescription.errors.required">
+                                <p class="errormsgcss">Deal Description is Required</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12 mb-3">
+                        <mat-form-field color="primary" appearance="outline" style="width: 100%">
+                            <mat-label>Select Start date</mat-label>
+                            <input formControlName="startdate" matInput [matDatepicker]="dp3" [min]="minDate" disabled />
+                            <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                            <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                        </mat-form-field>
+                        <div *ngIf="submitted && f.startdate.errors" style="color: red">
+                            <div *ngIf="f.startdate.errors.required">
+                                <p class="errormsgcss">Start Date is Required</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12 mb-3">
+                        <mat-form-field color="primary" appearance="outline" style="width: 100%">
+                            <mat-label>Select End date</mat-label>
+                            <input formControlName="enddate" matInput [matDatepicker]="dp2" [min]="minDate" disabled />
+                            <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+                            <mat-datepicker #dp2 disabled="false"></mat-datepicker>
+                        </mat-form-field>
+                        <div *ngIf="submitted && f.enddate.errors" style="color: red">
+                            <div *ngIf="f.enddate.errors.required">
+                                <p class="errormsgcss">End Date is Required</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" (click)="Submitform()" class="btn btn-warning">
+            {{ button }}
+          </button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12" style="text-align: right">
+                    <mat-form-field appearance="outline" style="margin-top: 2%">
+                        <mat-label>Search</mat-label>
+                        <input matInput [(ngModel)]="filter" (keyup)="applyFilter($event)" placeholder="Placeholder" />
+                        <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="cardmain">
+                <mat-table [dataSource]="dataSource" matSort style="width: 100%">
+                    <ng-container matColumnDef="Sno">
+                        <mat-header-cell *matHeaderCellDef>Sno.</mat-header-cell>
+                        <mat-cell *matCellDef="let element; let i = index">
+                            {{ i + 1 }}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Deal Name">
+                        <mat-header-cell *matHeaderCellDef>Deal Name</mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{ element.dealTitle }}
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Start date">
+                        <mat-header-cell *matHeaderCellDef>Start date</mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{ element.startdate | date: "yyyy-MM-dd" }}
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="End Date">
+                        <mat-header-cell *matHeaderCellDef>End Date</mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{ element.enddate | date: "yyyy-MM-dd" }}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Active">
+                        <mat-header-cell *matHeaderCellDef>Active</mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <mat-slide-toggle class="example-margin" (change)="togglechange($event, element)" [checked]="element.isActive">
+                            </mat-slide-toggle>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Action">
+                        <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <mat-icon aria-hidden="false" (click)="editdata(element)" aria-label="Example home icon">edit</mat-icon>
+                            <mat-icon aria-hidden="false" (click)="delete(element)" aria-label="Example home icon">delete</mat-icon>
+                        </mat-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+                    <div *matNoDataRow style="
+              width: 100%;
+              text-align: center;
+              color: red;
+              margin-top: 15px;
+            ">
+                        No data Found
+                    </div>
+                </mat-table>
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

@@ -15,7 +15,7 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from './services/auth/auth.service';
 import { CategoryService } from './services/category/category.service';
 import { ProductsService } from './services/products/products.service';
-
+import { DealService } from './services/deal/deal.service';
 
 @NgModule({
   declarations: [AppComponent, AdmindashboardComponent, AuthdashComponent],
@@ -28,7 +28,7 @@ import { ProductsService } from './services/products/products.service';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
   ],
-  providers: [AuthService, CategoryService, ProductsService],
+  providers: [AuthService, CategoryService, ProductsService, DealService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -15,6 +15,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [],
@@ -34,6 +35,7 @@ import { MatInputModule } from '@angular/material/input';
     MatSortModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDatepickerModule,
   ],
   exports: [
     CommonModule,
@@ -51,6 +53,7 @@ import { MatInputModule } from '@angular/material/input';
     MatSortModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDatepickerModule,
   ],
 })
 export class MaterialModule {}

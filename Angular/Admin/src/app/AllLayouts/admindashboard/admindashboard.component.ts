@@ -18,4 +18,8 @@ export class AdmindashboardComponent implements OnInit {
       this.router.navigate(['/Auth'], { replaceUrl: true });
     });
   }
+
+  gotohome() {
+    this.router.navigate(['/Admin'], { replaceUrl: true });
+  }
 }
