@@ -13,6 +13,16 @@ export class AuthService {
 
   constructor(public afAuth: AngularFireAuth, private db: AngularFireDatabase) {
     this.userref = db.list(this.dbPath);
+    this.afAuth.authState.subscribe((user) => {
+      if (user) {
+        debugger;
+        console.log(user.uid);
+        localStorage.setItem('user', user.uid);
+      } else {
+        debugger;
+        localStorage.setItem('user', null);
+      }
+    });
   }
 
   SignUp(userpojo: Signup): any {
@@ -31,5 +41,15 @@ export class AuthService {
       loginData.email,
       loginData.password
     );
+  }
+
+  dologut() {
+    return this.afAuth.signOut();
+  }
+
+  getcurrentuser() {
+    debugger;
+    var k = localStorage.getItem('user');
+    return localStorage.getItem('user');
   }
 }

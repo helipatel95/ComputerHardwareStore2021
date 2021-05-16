@@ -1,0 +1,132 @@
+<p class="mt-4 px-2" routerLink="/Admin">
+    <i class="fa fa-chevron-left px-2" aria-hidden="true"></i>
+    <a style="cursor: pointer">
+        <b><u>Back to Home Page</u></b>
+    </a>
+</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="cardmain">
+                <div class="titleform">
+                    <b>{{ button }} Categry</b>
+                </div>
+                <hr />
+                <form [formGroup]="categoryForm" class="padding5">
+                    <div class="form-group">
+                        <label for="categoryName">Category Name</label>
+                        <input type="text" class="form-control" formControlName="categoryName" id="categoryName" [ngClass]="{
+                'is-invalid': submitted && f.categoryName.errors,
+                invalid_field: submitted && f.categoryName.errors
+              }" />
+                        <div *ngIf="submitted && f.categoryName.errors" class="invalid-feedback">
+                            <div *ngIf="f.categoryName.errors.required">
+                                Deal Name is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center" style="margin-top: 5%">
+                        <button type="submit" (click)="Submitform()" class="btn btn-warning">
+              {{ button }}
+            </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12" style="text-align: right">
+                    <mat-form-field appearance="outline" style="margin-top: 2%">
+                        <mat-label>Search</mat-label>
+                        <input matInput [(ngModel)]="filter" (keyup)="applyFilter($event)" placeholder="Placeholder" />
+                        <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="cardmain">
+                <mat-table [dataSource]="dataSource" matSort style="width: 100%">
+                    <ng-container matColumnDef="Sno">
+                        <mat-header-cell *matHeaderCellDef>Sno.</mat-header-cell>
+                        <mat-cell *matCellDef="let element; let i = index">
+                            {{ i + 1 }}
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="categoryName">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{ element.categoryname }}
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Active">
+                        <mat-header-cell *matHeaderCellDef>Active</mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <mat-slide-toggle class="example-margin" (change)="togglechange($event, element)" [checked]="element.isActive">
+                            </mat-slide-toggle>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Action">
+                        <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <mat-icon aria-hidden="false" (click)="editdata(element)" aria-label="Example home icon">edit</mat-icon>
+                            <mat-icon aria-hidden="false" (click)="delete(element)" aria-label="Example home icon">delete</mat-icon>
+                        </mat-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+                    <div *matNoDataRow style="
+              width: 100%;
+              text-align: center;
+              color: red;
+              margin-top: 15px;
+            ">
+                        No data Found
+                    </div>
+                    <!-- <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="4">
+                            No data matching the filter "{{ filter }}"
+                        </td>
+                    </tr> -->
+                </mat-table>
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="container-fluid p-3 my-4">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-8">
+            <mat-table [dataSource]="dataSource" style="width: 100%">
+                <ng-container matColumnDef="Sno">
+                    <th mat-header-cell *matHeaderCellDef>Sno.</th>
+                    <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
+                </ng-container>
+                <ng-container matColumnDef="categoryName">
+                    <th mat-header-cell *matHeaderCellDef>Deal Name</th>
+                    <td mat-cell *matCellDef="let element">{{ element.categoryName }}</td>
+                </ng-container>
+                <ng-container matColumnDef="Edit">
+                    <th mat-header-cell *matHeaderCellDef>Edit</th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-raised-button color="primary" (click)="edit(element)">
+              Edit
+            </button>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="Delete">
+                    <th mat-header-cell *matHeaderCellDef>Delete</th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-raised-button color="primary" (click)="remove(element)">
+              Delete
+            </button>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </mat-table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+    </div>
+</div> -->

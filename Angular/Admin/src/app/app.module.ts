@@ -13,7 +13,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './services/auth/auth.service';
-import { CategoreyService } from './services/categorey.service';
+import { CategoryService } from './services/category/category.service';
 
 @NgModule({
   declarations: [AppComponent, AdmindashboardComponent, AuthdashComponent],
@@ -26,7 +26,7 @@ import { CategoreyService } from './services/categorey.service';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
   ],
-  providers: [AuthService, CategoreyService],
+  providers: [AuthService, CategoryService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -27,10 +27,21 @@ export class LoginComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: [null, Validators.required],
     });
+    this.checkLogin();
   }
 
   get f() {
     return this.loginform.controls;
+  }
+
+  checkLogin() {
+    if (
+      this.authservice.getcurrentuser() &&
+      this.authservice.getcurrentuser() != 'null'
+    ) {
+      debugger;
+      this.router.navigate(['/Admin'], { replaceUrl: true });
+    }
   }
 
   onSubmit() {
@@ -45,6 +56,7 @@ export class LoginComponent implements OnInit {
     this.authservice
       .dologin(logindata)
       .then((result) => {
+        var user = this.authservice.getcurrentuser();
         this.router.navigate(['/Admin'], { replaceUrl: true });
       })
       .catch((error) => {
