@@ -1,7 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
-*{
-    box-sizing: border-box;
-}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.bottom_modal .modal-dialog .modal-header {
+    background: #00AAF5;
+    color: #fff;
+    border-radius: 0;
+    padding: 8px 8%;
+  }
+  .bottom_modal .modal-dialog {
+    max-width: 100%;
+    margin: 0px;
+    position: fixed;
+    width: 100%;
+    top: auto;
+    right: auto;
+    left: auto;
+    bottom: 0;
+  }

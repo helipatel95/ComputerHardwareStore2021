@@ -1,0 +1,97 @@
+
+.carousel-caption
+{
+    position: absolute;
+    top: 55%;
+    transform: translateY(-80%);
+    left: -8%;
+}
+.carousel-caption h1{
+    font-size: 40px;
+    font-weight: 400;
+    color: black;
+}
+.carousel-caption p{
+    font-weight: 400;
+    color:black
+}
+#myCarousel-indicators > li {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: black;
+  }
+  
+
+// product slider  
+
+header{
+    width: 98%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+header p span{
+    font-size: 40px;
+    margin: 0 5px;
+    cursor: pointer;
+    color: #555;
+     width: 30px;
+    height: 30px;
+    display: inline-block;
+    line-height: 19px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+section{
+    width: 98%;
+    height: 200px;
+    /*background: red;*/
+    margin: auto;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+}
+section::-webkit-scrollbar{
+    display: none;
+}
+section .product{
+    min-width: 16%;
+    height: 90%;
+    margin:  0 20px  0 0;
+    text-align: center;
+    position: relative;
+    left: 0;
+    transition: 0.5s;
+
+}
+picture{
+    width: 100%;
+    height: 70%;
+    padding: 15px;
+    text-align: center;
+    /*background: green;*/
+    display: flex;
+    overflow: hidden;
+    margin-bottom: 3px;
+}
+picture i{
+    width: 100%;
+}
+
+.leftArrow
+{
+    position: absolute;
+    bottom: 80px;
+    z-index: 999;
+}
+
+.rightArrow
+{
+    position: absolute;
+    right: 0px;
+    bottom: 80px;
+    z-index: 999;
+}

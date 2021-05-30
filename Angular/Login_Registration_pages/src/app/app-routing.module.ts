@@ -1,23 +1,40 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CredentialsComponent } from './credentials/credentials.component';
-import { SignupComponent } from './credentials/signup/signup.component';
-import { SigninComponent } from './credentials/signin/signin.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { AuthDashComponent } from './AllLayouts/auth-dash/auth-dash.component';
+import { DashboardComponent } from './AllLayouts/dashboard/dashboard.component';
 
 const routes: Routes = [
-  { path: "", redirectTo: "Credential", pathMatch: "full" },
-  { path: "Credential", component: CredentialsComponent,children:[
-    {path: "", redirectTo: "signin", pathMatch: "full"},
-    {path: "signin",component:SigninComponent},
-    {path:"signup",component:SignupComponent},
-  ] },
-  {path:"forgotPassword",component:ForgotPasswordComponent},
-  { path: '**', redirectTo: "Credential", pathMatch: "full"  }
+  { path: '', redirectTo: 'Auth', pathMatch: 'full' },
+  {
+    path: 'Dashboard',
+    component: DashboardComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./AllLayouts/dashboard/dashboard.module').then(
+            (m) => m.DashboardModule
+          ),
+      },
+    ],
+  },
+  {
+    path: 'Auth',
+    component: AuthDashComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./AllLayouts/auth-dash/auth-dash.module').then(
+            (m) => m.AuthDashModule
+          ),
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
