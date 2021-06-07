@@ -1,0 +1,17 @@
+.filterDivFlex {
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    position: fixed;
+    height: 100%;
+    border-right: 1px solid black;
+}
+
+.filterTitle {
+    display: flex;
+    justify-content: space-between;
+}
+
+.example-section {
+    margin: 12px 0;
+}

@@ -1,0 +1,23 @@
+<div class="filterDivFlex" style="margin-top: 1%">
+    <div class="filterTitle" style="padding-right: 3%">
+        <div>
+            <h3><b>All Filters</b></h3>
+        </div>
+        <!-- <div>Clear All</div> -->
+    </div>
+    <div><b>All Brands</b></div>
+
+    <div style="margin-top: 12px">
+        <ul>
+            <li *ngFor="let brand of allBrandArray">
+                <mat-checkbox [(ngModel)]="brand.selected" (change)="updateBrandArray(brand.id)">
+                    {{ brand.produtBrand }}
+                </mat-checkbox>
+            </li>
+        </ul>
+    </div>
+    <div style="margin-top: 12px"><b>Price</b></div>
+    <div style="margin-top: 9px; margin-left: 5px; margin-right: 5px">
+        <mat-slider style="width: 100%" [(ngModel)]="selectedPrice" thumbLabel [displayWith]="formatLabel" tickInterval="200" step="200" min="0" max="5000" aria-label="units" (blur)="someMethod()"></mat-slider>
+    </div>
+</div>

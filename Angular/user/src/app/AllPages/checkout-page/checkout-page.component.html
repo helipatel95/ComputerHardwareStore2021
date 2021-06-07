@@ -1,0 +1,227 @@
+<div class="container-xxl">
+    <div class="row">
+        <div class="col-md-6">
+            <h1><b>User Info</b></h1>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <table>
+                        <tr>
+                            <td style="width: 20%">
+                                <b>Invoice Date</b>
+                            </td>
+                            <td>{{invoicedate | date: "yyyy-MM-dd"}}</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 20%">
+                                <b>First Name</b>
+                            </td>
+                            <td>{{ loginuser.firstname }}</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 20%">
+                                <b>Last Name</b>
+                            </td>
+                            <td>{{ loginuser.lastname }}</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 20%">
+                                <b>Email Address</b>
+                            </td>
+                            <td>{{ loginuser.email }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6"></div>
+    </div>
+    <div class="row" style="margin-top: 5%">
+        <div class="col-md-6">
+            <h1><b>Billing Info</b></h1>
+
+            <mat-card>
+                <form [formGroup]="billingForm" class="padding5">
+                    <div class="row">
+                        <div class="form-group col-md-6 mb-3">
+                            <label class="lablecss">Street Name</label>
+                            <input type="text " formControlName="streetnamebilling" class="form-control inputcss" />
+                            <div *ngIf="submitted && f.streetnamebilling.errors" style="color: red">
+                                <div *ngIf="f.streetnamebilling.errors.required">
+                                    <p class="errormsgcss">Street Name is required</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 mb-3">
+                            <label class="lablecss">Apt No</label>
+                            <input type="text " formControlName="apartmentbilling" class="form-control inputcss" />
+                            <div *ngIf="submitted && f.apartmentbilling.errors" style="color: red">
+                                <div *ngIf="f.apartmentbilling.errors.required">
+                                    <p class="errormsgcss">APT no is required</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 mb-3">
+                            <label class="lablecss">Postal code</label>
+                            <input type="text " formControlName="postalcodebilling" class="form-control inputcss" />
+                            <div *ngIf="submitted && f.postalcodebilling.errors" style="color: red">
+                                <div *ngIf="f.postalcodebilling.errors.required">
+                                    <p class="errormsgcss">Postal code is required</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 mb-3">
+                            <label class="lablecss">City</label>
+                            <input type="text " formControlName="citybilling" class="form-control inputcss" />
+                            <div *ngIf="submitted && f.citybilling.errors" style="color: red">
+                                <div *ngIf="f.citybilling.errors.required">
+                                    <p class="errormsgcss">City is required</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4 mb-3">
+                            <label class="lablecss">Province</label>
+                            <input type="text " formControlName="provicebilling" class="form-control inputcss" />
+                            <div *ngIf="submitted && f.provicebilling.errors" style="color: red">
+                                <div *ngIf="f.provicebilling.errors.required">
+                                    <p class="errormsgcss">province is required</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </mat-card>
+        </div>
+        <div class="col-md-6">
+            <h1><b>Shipping Info</b></h1>
+
+            <mat-card>
+                <form [formGroup]="shippingform" class="padding5">
+                    <div class="row">
+                        <div class="form-group col-md-4 mb-3">
+                            <label class="lablecss">First Name</label>
+                            <input type="text " formControlName="firstnamedelivery" class="form-control inputcss" />
+                            <div *ngIf="submitted && g.firstnamedelivery.errors" style="color: red">
+                                <div *ngIf="g.firstnamedelivery.errors.required">
+                                    <p class="errormsgcss">First Name is required</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4 mb-3">
+                            <label class="lablecss">Last Name</label>
+                            <input type="text " formControlName="lastnamedelivery" class="form-control inputcss" />
+                            <div *ngIf="submitted && g.lastnamedelivery.errors" style="color: red">
+                                <div *ngIf="g.lastnamedelivery.errors.required">
+                                    <p class="errormsgcss">Last Name is required</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4 mb-3">
+                            <label class="lablecss">Phone No</label>
+                            <input type="text " formControlName="phonedelivery" class="form-control inputcss" />
+                            <div *ngIf="submitted && g.phonedelivery.errors" style="color: red">
+                                <div *ngIf="g.phonedelivery.errors.required">
+                                    <p class="errormsgcss">Phone No is required</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 mb-3">
+                            <label class="lablecss">Street Name</label>
+                            <input type="text " formControlName="streetnamedelivery" class="form-control inputcss" />
+                            <div *ngIf="submitted && g.streetnamedelivery.errors" style="color: red">
+                                <div *ngIf="g.streetnamedelivery.errors.required">
+                                    <p class="errormsgcss">Street Name is required</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 mb-3">
+                            <label class="lablecss">Apt No</label>
+                            <input type="text " formControlName="apartmentdelivery" class="form-control inputcss" />
+                            <div *ngIf="submitted && g.apartmentdelivery.errors" style="color: red">
+                                <div *ngIf="g.apartmentdelivery.errors.required">
+                                    <p class="errormsgcss">APT no is required</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4 mb-3">
+                            <label class="lablecss">Postal code</label>
+                            <input type="text " formControlName="postalcodedelivery" class="form-control inputcss" />
+                            <div *ngIf="submitted && g.postalcodedelivery.errors" style="color: red">
+                                <div *ngIf="g.postalcodedelivery.errors.required">
+                                    <p class="errormsgcss">Postal code is required</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4 mb-3">
+                            <label class="lablecss">City</label>
+                            <input type="text " formControlName="citydelivery" class="form-control inputcss" />
+                            <div *ngIf="submitted && g.citydelivery.errors" style="color: red">
+                                <div *ngIf="g.citydelivery.errors.required">
+                                    <p class="errormsgcss">City is required</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4 mb-3">
+                            <label class="lablecss">Province</label>
+                            <input type="text " formControlName="provicedelivery" class="form-control inputcss" />
+                            <div *ngIf="submitted && g.provicedelivery.errors" style="color: red">
+                                <div *ngIf="g.provicedelivery.errors.required">
+                                    <p class="errormsgcss">province is required</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 5%">
+        <div class="col-md-9">
+            <h1><b>All Items</b></h1>
+            <p>Total Products: {{ cartArray?.length || "0" }}</p>
+            <ng-container *ngIf="cartArray?.length > 0">
+                <mat-card *ngFor="let cart of cartArray; index as i; first as isFirst">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="imagecontenier">
+                                <img [src]="cart.product.productImages[0]" />
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <h2>
+                                <b>{{ cart.product.productName }}</b>
+                            </h2>
+                            <p>Qty: 1</p>
+                            <p>
+                                <s>{{ cart.product.productPrice }}$</s> 25%save
+                            </p>
+                            <p class="orignnaleprice">{{ cart.product.productPrice }}$ CAD</p>
+                        </div>
+                    </div>
+                </mat-card>
+                <mat-card *ngIf="cartArray?.length == 0">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2><b>No data in Shopping Cart</b></h2>
+                        </div>
+                    </div>
+                </mat-card>
+            </ng-container>
+        </div>
+        <div class="col-md-3">
+            <mat-card style="margin-top: 10%">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>
+                            <b>Sub Total : {{ totalprice }} $ CAD</b>
+                        </h1>
+                        <p>Total Products: {{ cartArray?.length || "0" }}</p>
+                        <button mat-raised-button style="color: white; background-color: black" (click)="checkout()">
+              Place Order
+            </button>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>

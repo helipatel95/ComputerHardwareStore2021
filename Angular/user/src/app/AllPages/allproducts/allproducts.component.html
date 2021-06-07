@@ -1,0 +1,61 @@
+<div class="maincontenire">
+    <div class="displayflexrow">
+        <app-filterpage *ngIf="displaychild" [productsInfo]="productArray" (productArrayChange)="productsArrayChengeEvent($event)"></app-filterpage>
+        <div class="productContent" style="width: 100%">
+            <div class="row">
+                <ng-container *ngFor="let product of productArray; index as i; first as isFirst">
+                    <div class="col-md-4" style="margin-top: 1%">
+                        <div class="productcard">
+                            <div class="imagecontenier">
+                                <img [src]="product.productImages[0]" class="productcardimage" />
+                            </div>
+                            <div class="descriptioncontent" style="margin-left: 3%">
+                                <div>
+                                    <p class="titleProduct">
+                                        <b>{{ product.productName }}</b>
+                                    </p>
+                                    <p style="margin-bottom: 0%; font-size: 12px">
+                                        {{ product.categoryName }}
+                                    </p>
+                                    <p>{{ product.produtModelNo }}</p>
+                                </div>
+                                <div class="priceaddbutton">
+                                    <div>
+                                        <p style="margin-bottom: 0%; font-size: 12px">
+                                            <s>{{ product.productPrice }}$</s> 25%save
+                                        </p>
+                                        <p class="orignnaleprice">
+                                            <b>{{ product.productPrice }}$</b>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="priceaddbutton">
+                                    <div>
+                                        <button mat-stroked-button style="color: #ffc107" (click)="openProduct(product.id)">
+                      View
+                    </button>
+                                    </div>
+                                    <div>
+                                        <button mat-stroked-button style="color: #ffc107" (click)="addtcart(product)">
+                      Add To Cart
+                    </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="row">
+        <div class="col-md-2">
+            <div class="filtersection">
+                <div>asdasdasd</div>
+            </div>
+            <div class="col-md-10">
+                <div>sdasd</div>
+            </div>
+        </div>
+    </div> -->
+</div>
