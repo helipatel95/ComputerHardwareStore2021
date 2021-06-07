@@ -8,6 +8,7 @@ import { HomePageComponent } from 'src/app/AllPages/home-page/home-page.componen
 import { AllproductsComponent } from 'src/app/AllPages/allproducts/allproducts.component';
 import { FilterpageComponent } from 'src/app/AllPages/allproducts/filterpage/filterpage.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SingleproductComponent } from 'src/app/AllPages/singleproduct/singleproduct.component';
 import { CheckoutPageComponent } from 'src/app/AllPages/checkout-page/checkout-page.component';
 
 @NgModule({
@@ -15,6 +16,7 @@ import { CheckoutPageComponent } from 'src/app/AllPages/checkout-page/checkout-p
     HomePageComponent,
     AllproductsComponent,
     FilterpageComponent,
+    SingleproductComponent,
     CheckoutPageComponent,
   ],
   imports: [

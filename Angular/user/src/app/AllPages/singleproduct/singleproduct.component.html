@@ -1,0 +1,126 @@
+<div class="maincontainer" *ngIf="productData">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="imagedivcontent" style="width: 100%">
+                    <img style="max-height: 500px; max-width: 100%" [src]="bigimageDoenloadedurl" />
+                </div>
+            </div>
+            <div class="row" style="margin-top: 2%">
+                <div class="smallimagediv">
+                    <div class="smallimage" *ngFor="
+              let productimage of productData.productImages;
+              index as i;
+              first as isFirst
+            ">
+                        <img style="max-height: 100px" [src]="productimage" (click)="imageClick(productimage)" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row" style="margin-top: 25px">
+                <h2>
+                    <b>{{ productData.productName }}</b>
+                </h2>
+            </div>
+            <hr />
+            <div class="row" style="margin-top: 25px">
+                <div class="col-md-3">
+                    <p><b>Category :</b></p>
+                </div>
+                <div class="ol-md-9">
+                    <p>{{ productData.categoryName }}</p>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 25px">
+                <div class="col-md-3">
+                    <p><b>Model No :</b></p>
+                </div>
+                <div class="ol-md-9">
+                    <p>{{ productData.produtModelNo }}</p>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 25px">
+                <div class="col-md-3">
+                    <p><b>Brand :</b></p>
+                </div>
+                <div class="ol-md-9">
+                    <p>{{ productData.produtBrand }}</p>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 25px">
+                <div class="col-md-3">
+                    <p><b>Color :</b></p>
+                </div>
+                <div class="ol-md-9">
+                    <p>{{ productData.productcolor }}</p>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <p><b>Description :</b></p>
+            </div>
+            <div class="row" style="margin-top: 15px">
+                <p style="margin-left: 25px; margin-right: 25px">
+                    {{ productData.productDescription }}
+                </p>
+            </div>
+            <hr />
+            <div class="row">
+                <p style="margin-bottom: 0%; font-size: 12px">
+                    <s>{{ productData.productPrice }}$</s> 25%save
+                </p>
+            </div>
+            <div class="row">
+                <p class="orignnaleprice">
+                    <b>{{ productData.productPrice }}$</b>
+                </p>
+            </div>
+
+            <div class="row" style="margin-top: 25px">
+                <button mat-stroked-button style="color: #ffc107; margin-left: 5px; width: 100%" (click)="addtocart(productData)">
+          Add To Cart
+        </button>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row" style="margin-top: 50px">
+        <mat-tab-group mat-align-tabs="center" animationDuration="1500ms" style="width: 100%">
+            <mat-tab label="Tech Information" *ngIf="productData.tecSpec !== 0">
+                <div class="contentTab">
+                    <div class="row" style="margin-left: 25px; margin-right: 25px">
+                        <table>
+                            <tr *ngFor="
+                  let techSpecdata of productData.tecSpec;
+                  index as i;
+                  first as isFirst
+                ">
+                                <td style="width: 20%">
+                                    <b>{{ techSpecdata.techTitle }}</b>
+                                </td>
+                                <td>{{ techSpecdata.techSpec }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab label="More Information" *ngIf="productData.moreInfo !== 0">
+                <div class="contentTab">
+                    <div class="row" style="margin-left: 25px; margin-right: 25px">
+                        <table>
+                            <tr *ngFor="
+                  let moreInfoData of productData.moreInfo;
+                  index as i;
+                  first as isFirst
+                ">
+                                <td style="width: 20%">{{ moreInfoData }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>
