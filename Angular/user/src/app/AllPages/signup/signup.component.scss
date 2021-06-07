@@ -1,0 +1,14 @@
+.maindivcontent {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.textdiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 30%;
+    height: 100%;
+}

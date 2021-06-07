@@ -1,0 +1,75 @@
+<div class="container-xxl">
+    <div class="row">
+        <div class="col-md-9">
+            <h1><b>Shopping Cart</b></h1>
+            <p>Total Products: {{ cartArray?.length || "0" }}</p>
+            <ng-container *ngIf="cartArray?.length > 0">
+                <mat-card *ngFor="let cart of cartArray; index as i; first as isFirst">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="imagecontenier">
+                                <img [src]="cart.product.productImages[0]" />
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <mat-icon aria-hidden="false" aria-label="Example home icon" style="text-align: right; width: 100%" (click)="removeproduct(i)">delete</mat-icon>
+                            <h2>
+                                <b>{{ cart.product.productName }}</b>
+                            </h2>
+                            <p>
+                                Qty: 1
+                                <a style="color: blue" (click)="addproduct(cart.product)">
+                  AddMore</a
+                >
+              </p>
+              <p *ngIf="cart.product.discountPercentage > 0">
+                <s>{{ cart.product.productPrice }}$</s>
+                {{ cart.product.discountPercentage }}%save
+              </p>
+              <p class="orignnaleprice">
+                <b
+                  >{{
+                    getpercentage(
+                      cart.product.productPrice,
+                      cart.product.discountPercentage
+                    )
+                  }}$</b
+                >
+              </p>
+              <!-- <p>
+                <s>{{ cart.product.productPrice }}$</s> 25%save
+              </p>
+              <p class="orignnaleprice">{{ cart.product.productPrice }}$ CAD</p> -->
+            </div>
+          </div>
+        </mat-card>
+        <mat-card *ngIf="cartArray?.length == 0">
+          <div class="row">
+            <div class="col-md-12">
+              <h2><b>No data in Shopping Cart</b></h2>
+            </div>
+          </div>
+        </mat-card>
+      </ng-container>
+    </div>
+    <div class="col-md-3">
+      <mat-card style="margin-top: 10%">
+        <div class="row">
+          <div class="col-md-12">
+            <h1>
+              <b>Sub Total : {{ totalprice }} $ CAD</b>
+            </h1>
+            <p>Total Products: {{ cartArray?.length || "0" }}</p>
+            <button
+              mat-raised-button
+              style="color: white; background-color: black"
+              (click)="proceedtochekout()"
+            >
+              Procced to checkout
+            </button>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

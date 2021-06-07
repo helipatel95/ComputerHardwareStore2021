@@ -1,57 +1,79 @@
-<main>
-    <h1 style="
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 3em;
-      margin-bottom: 20px;
-    ">
-        Create new account
-    </h1>
-    <form [formGroup]="signupForm">
-        <div class="form-group">
-            <label for="firstName">First Name</label>
-            <input type="text" class="form-control" formControlName="firstname" id="firstName" [ngClass]="{
-          'is-invalid': submitted && f.firstname.errors,
-          invalid_field: submitted && f.firstname.errors
-        }" />
-            <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
-                <div *ngIf="f.firstname.errors.required">First Name is required</div>
+<div class="maindivcontent">
+    <div class="row" style="width: 100%">
+        <div class="col-md-6">
+            <div class="textdiv">
+                <h1>Don't have account ?</h1>
+                <p>Enjoy benefits</p>
+                <p><b>Fast Checkout</b></p>
+                <p>Your payment has saved and ready to apply</p>
+                <p><b>Track Order</b></p>
+                <p>Get update of your order</p>
+                <h3 class="mt-3">
+                    <u class="pr-2" style="cursor: pointer">
+            <b (click)="backtologin()">Already  have an account?</b>
+          </u>
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                </h3>
             </div>
         </div>
-        <div class="form-group">
-            <label for="lastName">Last Name</label>
-            <input type="text" class="form-control" formControlName="lastname" id="lastName" [ngClass]="{
-          'is-invalid': submitted && f.lastname.errors,
-          invalid_field: submitted && f.lastname.errors
-        }" />
-            <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
-                <div *ngIf="f.lastname.errors.required">Last Name is required</div>
-            </div>
+        <div class="col-md-6" style="padding-left: 8%; padding-right: 8%">
+            <h1 style="
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 3em;
+          margin-bottom: 20px;
+        " class="text-center">
+                Sign up
+            </h1>
+            <form [formGroup]="signupForm">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" class="form-control" formControlName="firstname" id="firstName" [ngClass]="{
+              'is-invalid': submitted && f.firstname.errors,
+              invalid_field: submitted && f.firstname.errors
+            }" />
+                    <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                        <div *ngIf="f.firstname.errors.required">
+                            First Name is required
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" class="form-control" formControlName="lastname" id="lastName" [ngClass]="{
+              'is-invalid': submitted && f.lastname.errors,
+              invalid_field: submitted && f.lastname.errors
+            }" />
+                    <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+                        <div *ngIf="f.lastname.errors.required">Last Name is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" formControlName="email" id="email" [ngClass]="{
+              'is-invalid': submitted && f.email.errors,
+              invalid_field: submitted && f.email.errors
+            }" />
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                        <div *ngIf="f.email.errors.pattern">Enter Valid Email</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" formControlName="password" id="password" [ngClass]="{
+              'is-invalid': submitted && f.password.errors,
+              invalid_field: submitted && f.password.errors
+            }" />
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">password is required</div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" (click)="Submitform()" class="btn btn-warning">
+            Create Account
+          </button>
+                </div>
+            </form>
         </div>
-        <div class="form-group">
-            <label for="email">Email address</label>
-            <input type="email" class="form-control" formControlName="email" id="email" [ngClass]="{
-          'is-invalid': submitted && f.email.errors,
-          invalid_field: submitted && f.email.errors
-        }" />
-            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                <div *ngIf="f.email.errors.required">Email is required</div>
-                <div *ngIf="f.email.errors.pattern">Enter Valid Email</div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" formControlName="password" id="password" [ngClass]="{
-          'is-invalid': submitted && f.password.errors,
-          invalid_field: submitted && f.password.errors
-        }" />
-            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                <div *ngIf="f.password.errors.required">password is required</div>
-            </div>
-        </div>
-        <div class="text-center">
-            <button type="submit" (click)="Submitform()" class="btn btn-warning">
-        Create Account
-      </button>
-        </div>
-    </form>
-</main>
+    </div>
+</div>

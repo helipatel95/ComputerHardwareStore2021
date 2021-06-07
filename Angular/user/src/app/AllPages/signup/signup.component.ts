@@ -41,6 +41,11 @@ export class SignupComponent implements OnInit {
     return this.signupForm.controls;
   }
 
+  backtologin() {
+    let url = 'Auth/login';
+    this.router.navigate([url]);
+  }
+
   Submitform() {
     this.submitted = true;
     console.log(this.signupForm);

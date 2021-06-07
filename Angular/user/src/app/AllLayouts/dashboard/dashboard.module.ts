@@ -9,7 +9,10 @@ import { AllproductsComponent } from 'src/app/AllPages/allproducts/allproducts.c
 import { FilterpageComponent } from 'src/app/AllPages/allproducts/filterpage/filterpage.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SingleproductComponent } from 'src/app/AllPages/singleproduct/singleproduct.component';
+import { CartPageComponent } from 'src/app/AllPages/cart-page/cart-page.component';
 import { CheckoutPageComponent } from 'src/app/AllPages/checkout-page/checkout-page.component';
+import { ListOfAssembleyComponent } from 'src/app/AllPages/list-of-assembley/list-of-assembley.component';
+import { AssemblySelectionComponent } from 'src/app/AllPages/assembly-selection/assembly-selection.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { CheckoutPageComponent } from 'src/app/AllPages/checkout-page/checkout-p
     AllproductsComponent,
     FilterpageComponent,
     SingleproductComponent,
+    CartPageComponent,
     CheckoutPageComponent,
+    ListOfAssembleyComponent,
+    AssemblySelectionComponent,
   ],
   imports: [
     CommonModule,

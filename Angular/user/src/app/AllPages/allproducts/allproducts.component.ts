@@ -21,7 +21,9 @@ export class AllproductsComponent implements OnInit {
     private route: ActivatedRoute,
     public productservice: ProductService,
     public addtocartservice: AddtocartService
-  ) {}
+  ) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  }
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
@@ -64,5 +66,10 @@ export class AllproductsComponent implements OnInit {
   }
   addtcart(product: Product) {
     this.addtocartservice.addproduct(product);
+  }
+  getpercentage(price: any, percentage: any) {
+    const amount: any = (percentage / 100) * price;
+    const finalprice: any = price - amount;
+    return finalprice;
   }
 }

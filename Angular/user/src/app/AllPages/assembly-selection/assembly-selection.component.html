@@ -1,0 +1,144 @@
+<ng-container *ngIf="!assemblyData">
+    <div class="maincontent">No data</div>
+</ng-container>
+<ng-container *ngIf="assemblyData">
+    <div class="row fulldivheight">
+        <div class="col-md-1 sidiv">
+            <ng-container *ngFor="
+          let assemblecategoriedata of assemblyData.allcategories;
+          index as i;
+          first as isFirst
+        ">
+                <div class="row belowborder" (click)="selectcategorie(assemblecategoriedata)">
+                    <div class="col-md-12" [ngClass]="{
+              my_class: assemblecategoriedata.id === selectedCategorieid
+            }">
+                        <div class="categoriediv">
+                            <img class="imagecategory" [src]="assemblecategoriedata.imagepath" />
+                            <div style="
+                  margin-top: 20px;
+                  padding-left: 12px;
+                  padding-right: 12px;
+                ">
+                                {{ assemblecategoriedata.categoryname }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+        <div class="col-md-11 contentdiv">
+            <!-- <div class="row" style="padding-left: 12px" *ngIf="selectedProduct.categoryName">
+                <h3>
+                    <b>Selected : {{ selectedCategoriename }}</b>
+                </h3>
+            </div>
+            <div class="row" style="margin-right: 5px">
+            </div> -->
+            <div class="row" style="padding-left: 12px; margin-top: 2%; padding-right: 2%">
+                <div class="col-md-6">
+                    <h3>
+                        <b>All {{ selectedCategoriename }}</b>
+                    </h3>
+                </div>
+                <div class="col-md-6" style="text-align: end" *ngIf="categorielength === assemblyData.allcategories?.length">
+                    <button mat-raised-button style="background-color: black; color: white" (click)="addtocart()">
+            Add All To Cart
+          </button>
+                </div>
+            </div>
+            <div class="row" style="margin-right: 10px">
+                <ng-container *ngFor="
+            let product of productDisplayArray;
+            index as i;
+            first as isFirst
+          ">
+                    <div class="col-md-4" style="margin-top: 1%">
+                        <div class="productcard" [ngClass]="{
+                boredrgreen: selectedProduct.id == product.id
+              }">
+                            <div class="imagecontenier">
+                                <img [src]="product.productImages[0]" class="productcardimage" />
+                            </div>
+                            <div class="descriptioncontent" style="margin-left: 3%">
+                                <div>
+                                    <p class="titleProduct">
+                                        <b>{{ product.productName }}</b>
+                                    </p>
+                                    <p style="margin-bottom: 0%; font-size: 12px">
+                                        {{ product.categoryName }}
+                                    </p>
+                                    <p>{{ product.produtModelNo }}</p>
+                                </div>
+                                <div class="priceaddbutton">
+                                    <div>
+                                        <p style="margin-bottom: 0%; font-size: 12px" *ngIf="product.discountPercentage > 0">
+                                            <s>{{ product.productPrice }}$</s> {{ product.discountPercentage }}%save
+                                        </p>
+                                        <p class="orignnaleprice">
+                                            <b>{{
+                          getpercentage(
+                            product.productPrice,
+                            product.discountPercentage
+                          )
+                        }}$</b
+                      >
+                    </p>
+                  </div>
+                </div>
+                <div class="priceaddbutton">
+                  <div>
+                    <button
+                      mat-stroked-button
+                      style="color: #ffc107"
+                      (click)="openproductPopup(product)"
+                    >
+                      View
+                    </button>
+                  </div>
+                  <div>
+                    <button
+                      mat-stroked-button
+                      style="color: #ffc107"
+                      (click)="selectProduct(product)"
+                    >
+                      Select
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="containermain">
+        <div class="side">
+            <div style="height: 150px">sadasd</div>
+            <div style="height: 150px">sadasd</div>
+            <div style="height: 150px">sadasd</div>
+            <div style="height: 150px">sadasd</div>
+            <div style="height: 150px">sadasd</div>
+            <div style="height: 150px">sadasd</div>
+            <div style="height: 150px">sadasd</div>
+            <div style="height: 150px">sadasd</div>
+            <div style="height: 150px">sadasd</div>
+            <div style="height: 150px">sadasd</div>
+            <div style="height: 150px">sadasd</div>
+            <div style="height: 150px">sadasd</div>
+            <div style="height: 150px">sadasd</div>
+            <div style="height: 150px">sadasd</div>
+            <div style="height: 150px">sadasd</div>
+        </div>
+        <div class="content">
+            <div style="height: 150px">qeq wqweqw</div>
+            <div style="height: 150px">sadeqweqweqweasd</div>
+            <div style="height: 150px">sadqweqweasd</div>
+            <div style="height: 150px">sadqweqweqweasd</div>
+            <div style="height: 150px">sadqwewqeqweasd</div>
+            <div style="height: 150px">saqweqwedasd</div>
+            <div style="height: 150px">sadqweqweqweasd</div>
+        </div>
+    </div> -->
+</ng-container>

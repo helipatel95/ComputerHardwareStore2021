@@ -1,0 +1,157 @@
+.maincontent {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.heightcss {
+    height: 250px;
+    width: 100%;
+}
+
+.sidiv {
+    height: 100vh;
+    overflow: auto;
+    border-right: 1px solid black;
+}
+
+.categoriediv {
+    min-height: 150px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagecategory {
+    max-width: 80px;
+    max-height: 80px;
+}
+
+.my_class {
+    border: 3px solid green;
+}
+
+.boredrgreen {
+    border: 3px solid green;
+}
+
+.contentdiv {
+    height: 100vh;
+    overflow: auto;
+}
+
+.containermain {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.fulldivheight {
+    height: 100vh;
+}
+
+.side {
+    flex: 1.5;
+    height: 100vh;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    line-height: 200px;
+}
+
+.categorymaindiv {
+    height: 150px;
+    width: 100%;
+}
+
+.content {
+    flex: 10.5;
+    height: 100vh;
+    overflow: auto;
+}
+
+::-webkit-scrollbar {
+    width: 2px;
+}
+
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background: black;
+    border-radius: 2px;
+}
+
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background: #b30000;
+}
+
+productContent {
+    margin-left: 18%;
+}
+
+.productcard {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+}
+
+.imagecontenier {
+    height: 200px;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.belowborder {
+    border-bottom: 1px solid black;
+}
+
+.productcardimage {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.descriptioncontent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-height: 200px;
+}
+
+.priceaddbutton {
+    display: flex;
+    flex-direction: row;
+}
+
+.titleProduct {
+    font-size: 15px;
+    margin-bottom: 0%;
+}
+
+.orignnaleprice {
+    font-size: 20px;
+    color: green;
+}
+
+.filterTitle {
+    display: flex;
+    justify-content: space-between;
+}

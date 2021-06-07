@@ -18,15 +18,29 @@ import { AuthService } from './services/auth/auth.service';
 import { AddtocartService } from './services/addtocart/addtocart.service';
 
 import { InvoiceserviceService } from './services/invoiceservice/invoiceservice.service';
+import { TestpageComponent } from './AllPages/testpage/testpage.component';
+import { AiPopupComponent } from './AllPages/ai-popup/ai-popup.component';
+import { AssemblyserviceService } from './services/assemblyservice/assemblyservice.service';
+import { AssembleyProductPopupComponent } from './AllPages/assembley-product-popup/assembley-product-popup.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, AuthDashComponent],
+  declarations: [
+    AppComponent,
+    DashboardComponent,
+    AuthDashComponent,
+    TestpageComponent,
+    AiPopupComponent,
+    AssembleyProductPopupComponent,
+  ],
   imports: [
     BrowserModule,
     MaterialModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     DashboardModule,
+    ReactiveFormsModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
   ],
@@ -37,6 +51,7 @@ import { InvoiceserviceService } from './services/invoiceservice/invoiceservice.
     AuthService,
     AddtocartService,
     InvoiceserviceService,
+    AssemblyserviceService,
   ],
   bootstrap: [AppComponent],
 })

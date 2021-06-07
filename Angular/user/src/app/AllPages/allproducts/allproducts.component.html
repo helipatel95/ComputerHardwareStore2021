@@ -21,34 +21,48 @@
                                 </div>
                                 <div class="priceaddbutton">
                                     <div>
-                                        <p style="margin-bottom: 0%; font-size: 12px">
-                                            <s>{{ product.productPrice }}$</s> 25%save
+                                        <p style="margin-bottom: 0%; font-size: 12px" *ngIf="product.discountPercentage > 0">
+                                            <s>{{ product.productPrice }}$</s> {{ product.discountPercentage }}%save
                                         </p>
                                         <p class="orignnaleprice">
-                                            <b>{{ product.productPrice }}$</b>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="priceaddbutton">
-                                    <div>
-                                        <button mat-stroked-button style="color: #ffc107" (click)="openProduct(product.id)">
+                                            <b>{{
+                          getpercentage(
+                            product.productPrice,
+                            product.discountPercentage
+                          )
+                        }}$</b
+                      >
+                    </p>
+                  </div>
+                </div>
+                <div class="priceaddbutton">
+                  <div>
+                    <button
+                      mat-stroked-button
+                      style="color: #ffc107"
+                      (click)="openProduct(product.id)"
+                    >
                       View
                     </button>
-                                    </div>
-                                    <div>
-                                        <button mat-stroked-button style="color: #ffc107" (click)="addtcart(product)">
+                  </div>
+                  <div>
+                    <button
+                      mat-stroked-button
+                      style="color: #ffc107"
+                      (click)="addtcart(product)"
+                    >
                       Add To Cart
                     </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </ng-container>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
+          </div>
+        </ng-container>
+      </div>
     </div>
-    <!-- <div class="row">
+  </div>
+  <!-- <div class="row">
         <div class="col-md-2">
             <div class="filtersection">
                 <div>asdasdasd</div>

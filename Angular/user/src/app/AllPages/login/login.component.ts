@@ -39,9 +39,13 @@ export class LoginComponent implements OnInit {
       this.authservice.getcurrentuser() &&
       this.authservice.getcurrentuser() != 'null'
     ) {
-     
       this.router.navigate(['/Dashboard'], { replaceUrl: true });
     }
+  }
+
+  signInPage() {
+    let url = 'Auth/signup';
+    this.router.navigate([url]);
   }
 
   get f() {

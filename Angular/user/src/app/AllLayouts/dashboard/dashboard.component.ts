@@ -13,30 +13,44 @@ declare var $: any;
 })
 export class DashboardComponent implements OnInit {
   categoryArray: any = [];
-  userdara: User = new User();
+  userdara: User = null;
   constructor(
     public catregoryservice: CategoryService,
     public router: Router,
     public authservice: AuthService
   ) {
-    this.userdara = this.authservice.getCurrentUserdata();
     this.getAllCategories();
   }
 
   ngOnInit(): void {
-    this.userdara = JSON.parse(localStorage.getItem('userdata'));
+    debugger;
+    setTimeout(() => {
+      this.userdara = JSON.parse(localStorage.getItem('userdata'));
+    }, 500);
+
     console.log(this.userdara);
   }
 
   dologout() {
     this.authservice.dologut();
     localStorage.clear();
-    let url = 'Auth';
+    let url = 'Auth/login';
     this.router.navigate([url], { replaceUrl: true });
   }
-  
+  gotocartpage() {
+    let url = 'Dashboard/Cart';
+    this.router.navigate([url]);
+  }
 
- 
+  gotocategory(category: Category) {
+    let url = 'Dashboard/allproducts/categorey/' + category.id;
+    this.router.navigate([url]);
+  }
+
+  gotoassembly() {
+    let url = 'Dashboard/Listofassembly';
+    this.router.navigate([url]);
+  }
 
   getAllCategories() {
     this.catregoryservice
