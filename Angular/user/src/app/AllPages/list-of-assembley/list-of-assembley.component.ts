@@ -47,7 +47,10 @@ export class ListOfAssembleyComponent implements OnInit {
       this.adviser = result.data;
     });
   }
- 
+  resetAi() {
+    localStorage.removeItem('adviser');
+    this.adviser = [];
+  }
   openAssemblySelection(data: Assemble) {
     let url = 'Dashboard/AssemblySelection/' + data.id;
     this.router.navigate([url]);
