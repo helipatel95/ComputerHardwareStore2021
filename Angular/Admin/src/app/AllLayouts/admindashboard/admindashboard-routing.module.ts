@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminHomeComponent } from 'src/app/AllPages/admin-home/admin-home.component';
+import { AssemblypageComponent } from 'src/app/AllPages/assemblypage/assemblypage.component';
 import { CategoryComponent } from 'src/app/AllPages/category/category.component';
 import { DealsComponent } from 'src/app/AllPages/deals/deals.component';
 import { ProductdetailsComponent } from 'src/app/AllPages/productdetails/productdetails.component';
@@ -17,4 +18,5 @@ export const AdmindashboardRoutingModule: Routes = [
   { path: 'Products', component: ProductsComponent },
   { path: 'Productsdata/:productid', component: ProductdetailsComponent },
   { path: 'Deals', component: DealsComponent },
+  { path: 'Assembly', component: AssemblypageComponent },
 ];

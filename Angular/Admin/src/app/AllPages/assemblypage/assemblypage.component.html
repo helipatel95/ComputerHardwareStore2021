@@ -1,0 +1,200 @@
+<div class="container-fluid" style="margin-top: 3%">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="cardmain">
+        <div class="titleform">
+          <b>Assembly</b>
+        </div>
+        <hr />
+        <form
+          [formGroup]="assemblyForm"
+          #formDirective="ngForm"
+          class="padding5"
+        >
+          <div class="form-group col-md-12 mb-3">
+            <label class="lablecss">Assembly Name</label>
+            <input
+              type="text "
+              formControlName="assemblyTitle"
+              class="form-control inputcss"
+            />
+            <div *ngIf="submitted && f.assemblyTitle.errors" style="color: red">
+              <div *ngIf="f.assemblyTitle.errors.required">
+                <p class="errormsgcss">Assembly Name is required</p>
+              </div>
+            </div>
+          </div>
+          <form [formGroup]="assemblyCategoryForm" #formDirective="ngForm">
+            <div class="row">
+              <div class="form-group col-md-10 mb-3">
+                <label class="lablecss">Produt Category</label>
+                <select
+                  formControlName="categoryid"
+                  class="form-select"
+                  aria-label="Default select example"
+                >
+                  <option
+                    *ngFor="let category of categoryArray"
+                    [ngValue]="category.id"
+                  >
+                    {{ category.categoryname }}
+                  </option>
+                </select>
+                <div
+                  *ngIf="submittedcategory && g.categoryid.errors"
+                  style="color: red"
+                >
+                  <div *ngIf="g.categoryid.errors.required">
+                    <p class="errormsgcss">Please Select Category</p>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-2 mb-3 endtext">
+                <button
+                  type="submit"
+                  (click)="Submitformcategory()"
+                  class="btn btn-warning"
+                  style="margin-top: 5%"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <ng-container>
+                <div class="row" *ngFor="let category of categorySelectedArray">
+                  <div class="col-md-8 centertext">
+                    <p>{{ category.categoryname }}</p>
+                  </div>
+                  <div class="col-md-4 centertext">
+                    <mat-icon
+                      aria-hidden="false"
+                      (click)="delete(category)"
+                      aria-label="Example home icon"
+                      >delete</mat-icon
+                    >
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </form>
+
+          <div style="margin-top: 5%">
+            <label for="categoryName">File Upload</label>
+            <input
+              #myInput
+              type="file"
+              class="form-control"
+              id="imagepath"
+              (change)="handleFileInput($event.target.files)"
+            />
+            <!-- <div *ngIf="submitted && f.imagepath.errors" class="invalid-feedback">
+                            <div *ngIf="f.imagepath.errors.required">image is required</div>
+                        </div> -->
+          </div>
+          <p *ngIf="downloadedurl">Previous Photo</p>
+          <img
+            *ngIf="downloadedurl"
+            [src]="downloadedurl"
+            style="width: 100px; height: 100px"
+          />
+          <mat-progress-bar
+            *ngIf="submitted"
+            [value]="uploadProgress$ | async"
+            mode="determinate"
+          >
+          </mat-progress-bar>
+
+          <button
+            type="submit"
+            (click)="Submitform()"
+            class="btn btn-warning"
+            style="margin-top: 5%"
+          >
+            {{ button }}
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-12" style="text-align: right">
+          <mat-form-field appearance="outline" style="margin-top: 2%">
+            <mat-label>Search</mat-label>
+            <input
+              matInput
+              [(ngModel)]="filter"
+              (keyup)="applyFilter($event)"
+              placeholder="Placeholder"
+            />
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="cardmain">
+        <mat-table [dataSource]="dataSource" matSort style="width: 100%">
+          <ng-container matColumnDef="Sno">
+            <mat-header-cell *matHeaderCellDef>Sno.</mat-header-cell>
+            <mat-cell *matCellDef="let element; let i = index">
+              {{ i + 1 }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="Assembly Title">
+            <mat-header-cell *matHeaderCellDef>Assembly Title</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              {{ element.assemblyTitle }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="Active">
+            <mat-header-cell *matHeaderCellDef>Active</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <mat-slide-toggle
+                class="example-margin"
+                (change)="togglechange($event, element)"
+                [checked]="element.isActive"
+              >
+              </mat-slide-toggle>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="Action">
+            <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <mat-icon
+                aria-hidden="false"
+                (click)="editdata(element)"
+                aria-label="Example home icon"
+                >edit</mat-icon
+              >
+              <mat-icon
+                aria-hidden="false"
+                (click)="deletedata(element)"
+                aria-label="Example home icon"
+                >delete</mat-icon
+              >
+            </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+          <div
+            *matNoDataRow
+            style="
+              width: 100%;
+              text-align: center;
+              color: red;
+              margin-top: 15px;
+            "
+          >
+            No data Found
+          </div>
+        </mat-table>
+        <mat-paginator
+          [pageSizeOptions]="[5, 10, 20]"
+          showFirstLastButtons
+        ></mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>

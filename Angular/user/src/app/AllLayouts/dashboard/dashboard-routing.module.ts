@@ -6,7 +6,9 @@ import { CartPageComponent } from 'src/app/AllPages/cart-page/cart-page.componen
 import { CheckoutPageComponent } from 'src/app/AllPages/checkout-page/checkout-page.component';
 import { HomePageComponent } from 'src/app/AllPages/home-page/home-page.component';
 import { ListOfAssembleyComponent } from 'src/app/AllPages/list-of-assembley/list-of-assembley.component';
+import { OrderhistoryComponent } from 'src/app/AllPages/orderhistory/orderhistory.component';
 import { SingleproductComponent } from 'src/app/AllPages/singleproduct/singleproduct.component';
+import { AboutusComponent } from 'src/app/AppPages/aboutus/aboutus.component';
 import Assemble from 'src/app/shared/AllPojos/assemble';
 
 export const DashboardRoutingModule: Routes = [
@@ -25,4 +27,6 @@ export const DashboardRoutingModule: Routes = [
     path: 'AssemblySelection/:id',
     component: AssemblySelectionComponent,
   },
+  { path: 'Orderhistory', component: OrderhistoryComponent },
+  { path: 'Aboutus', component: AboutusComponent },
 ];

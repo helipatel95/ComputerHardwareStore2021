@@ -52,7 +52,19 @@
                         </div>
                     </div>
 
-                    <button type="submit" (click)="Submitform()" class="btn btn-warning">
+                    <div>
+                        <label for="categoryName">File Upload</label>
+                        <input #myInput type="file" class="form-control" id="imagepath" (change)="handleFileInput($event.target.files)" />
+                        <!-- <div *ngIf="submitted && f.imagepath.errors" class="invalid-feedback">
+                            <div *ngIf="f.imagepath.errors.required">image is required</div>
+                        </div> -->
+                    </div>
+                    <p *ngIf="downloadedurl">Previous Photo</p>
+                    <img *ngIf="downloadedurl" [src]="downloadedurl" style="width: 100px; height: 100px" />
+                    <mat-progress-bar *ngIf="submitted" [value]="uploadProgress$ | async" mode="determinate">
+                    </mat-progress-bar>
+
+                    <button type="submit" (click)="Submitform()" class="btn btn-warning" style="margin-top: 5%">
             {{ button }}
           </button>
                 </form>

@@ -13,6 +13,8 @@ import { CartPageComponent } from 'src/app/AllPages/cart-page/cart-page.componen
 import { CheckoutPageComponent } from 'src/app/AllPages/checkout-page/checkout-page.component';
 import { ListOfAssembleyComponent } from 'src/app/AllPages/list-of-assembley/list-of-assembley.component';
 import { AssemblySelectionComponent } from 'src/app/AllPages/assembly-selection/assembly-selection.component';
+import { OrderhistoryComponent } from 'src/app/AllPages/orderhistory/orderhistory.component';
+import { AboutusComponent } from 'src/app/AppPages/aboutus/aboutus.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { AssemblySelectionComponent } from 'src/app/AllPages/assembly-selection/
     CheckoutPageComponent,
     ListOfAssembleyComponent,
     AssemblySelectionComponent,
+    OrderhistoryComponent,
+    AboutusComponent,
   ],
   imports: [
     CommonModule,

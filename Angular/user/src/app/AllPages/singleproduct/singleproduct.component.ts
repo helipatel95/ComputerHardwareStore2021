@@ -42,6 +42,12 @@ export class SingleproductComponent implements OnInit {
       });
   }
 
+  getpercentage(price: any, percentage: any) {
+    const amount: any = (percentage / 100) * price;
+    const finalprice: any = price - amount;
+
+    return finalprice;
+  }
   imageClick(url: string) {
     this.bigimageDoenloadedurl = url;
   }

@@ -1,10 +1,18 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DealService } from 'src/app/services/deal/deal.service';
+import { UploadimageService } from 'src/app/services/uploadimage/uploadimage.service';
 import Deal from 'src/app/Shared/AllPojos/deal';
 
 @Component({
@@ -33,9 +41,20 @@ export class DealsComponent implements OnInit, AfterViewInit {
   button: any = 'Add';
   dealToBeUpdate: Deal = new Deal();
 
-  dealArray?: Deal[];
+  fileToUpload: File = null;
+  uploadProgress$: Observable<number>;
 
-  constructor(private fb: FormBuilder, public dealService: DealService) {
+  downloadedurl: string = '';
+
+  dealArray?: Deal[];
+  @ViewChild('myInput')
+  myInputVariable: ElementRef;
+
+  constructor(
+    private fb: FormBuilder,
+    public dealService: DealService,
+    public storeageservice: UploadimageService
+  ) {
     this.dataSource = new MatTableDataSource(this.dealArray);
   }
 
@@ -68,6 +87,10 @@ export class DealsComponent implements OnInit, AfterViewInit {
     return this.dealForm.controls;
   }
 
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+  }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -81,24 +104,70 @@ export class DealsComponent implements OnInit, AfterViewInit {
     if (this.dealForm.invalid) {
       return;
     } else {
-      if (this.button == 'Add') {
-        this.addDeal();
+      if (this.fileToUpload) {
+        if (this.button == 'Add') {
+          this.dofileupload();
+        } else {
+          this.updateFileUpload();
+        }
       } else {
-        this.updateData();
+        if (this.button == 'Update') {
+          debugger;
+          this.updateData('');
+        }
       }
+      // if (this.button == 'Add') {
+      //   this.addDeal();
+      // } else {
+      //   this.updateData();
+      // }
     }
   }
-  updateData() {
+  updateFileUpload() {
+    if (this.downloadedurl) {
+      this.storeageservice.deletefile(this.downloadedurl);
+    }
+    this.dofileupload();
+  }
+  dofileupload() {
+    const mediaFolderPath = `deals/`;
+
+    const { downloadUrl$, uploadProgress$ } =
+      this.storeageservice.uploadFileAndGetMetadata(
+        mediaFolderPath,
+        this.fileToUpload
+      );
+
+    this.uploadProgress$ = uploadProgress$;
+
+    downloadUrl$.subscribe((downloadUrl) => {
+      this.fileToUpload = null;
+      if (this.button == 'Add') {
+        this.addDeal(downloadUrl);
+      } else {
+        this.updateData(downloadUrl);
+      }
+    });
+  }
+
+  updateData(url: string) {
+    debugger;
     Object.keys(this.dealForm.value).forEach((key) => {
       this.dealToBeUpdate[key] = this.dealForm.get(key).value;
     });
+    if (url) {
+      this.dealToBeUpdate.imagepath = url;
+    }
     this.dealService
       .update(this.dealToBeUpdate)
       .then((result) => {
+        debugger;
         this.dealForm.reset();
         this.submitted = false;
         this.formDirective.resetForm();
         this.button = 'Add';
+        this.myInputVariable.nativeElement.value = '';
+        this.downloadedurl = '';
       })
       .catch((err) => {});
   }
@@ -119,6 +188,7 @@ export class DealsComponent implements OnInit, AfterViewInit {
 
   editdata(data) {
     this.dealToBeUpdate = data;
+    this.downloadedurl = this.dealToBeUpdate.imagepath;
     const { dealTitle, startdate, enddate, dealDescription } = data;
     this.dealForm.patchValue({
       dealTitle,
@@ -129,12 +199,15 @@ export class DealsComponent implements OnInit, AfterViewInit {
     this.button = 'Update';
   }
 
-  addDeal() {
+  addDeal(downloadurl: string) {
     let deal = new Deal(this.dealForm.value);
+    deal.imagepath = downloadurl;
     this.dealService.create(deal).then(() => {
       this.dealForm.reset();
       this.submitted = false;
       this.formDirective.resetForm();
+      this.myInputVariable.nativeElement.value = '';
+      this.downloadedurl = '';
     });
   }
 }

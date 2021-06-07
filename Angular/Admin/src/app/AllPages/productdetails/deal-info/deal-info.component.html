@@ -1,0 +1,130 @@
+<form [formGroup]="dealInfoForm">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-3">
+          <label>
+            <input
+              type="radio"
+              value="auto"
+              formControlName="dealselection"
+              (click)="setradio('auto')"
+            />
+            <span style="margin-left: 12px">Select From Deals</span>
+          </label>
+        </div>
+        <div class="col-md-3">
+          <label>
+            <input
+              type="radio"
+              value="manual"
+              formControlName="dealselection"
+              (click)="setradio('manual')"
+            />
+            <span style="margin-left: 12px">Enater Manually</span>
+          </label>
+        </div>
+      </div>
+      <ng-container *ngIf="dealInfoForm.controls.dealselection.value">
+        <div class="row" style="margin-top: 25px" *ngIf="dealhide">
+          <div class="form-group col-md-6 mb-3">
+            <label class="lablecss">Select Deal</label>
+            <select
+              formControlName="dealid"
+              class="form-select"
+              aria-label="Default select example"
+              #mySelect
+              (change)="onOptionsSelected($event)"
+            >
+              <option *ngFor="let deal of dealArray" [ngValue]="deal.id">
+                {{ deal.dealTitle }}
+              </option>
+            </select>
+            <div *ngIf="submitted && f.dealid.errors" style="color: red">
+              <div *ngIf="f.dealid.errors.required">
+                <p class="errormsgcss">Please Select Deal</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <div class="row" style="margin-top: 15px">
+        <div class="form-group col-md-4 mb-3">
+          <mat-form-field
+            color="primary"
+            appearance="outline"
+            style="width: 100%"
+          >
+            <mat-label>Select Start date</mat-label>
+            <input
+              formControlName="stardate"
+              matInput
+              [matDatepicker]="dp3"
+              disabled
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="dp3"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #dp3 [disabled]="dealhide"></mat-datepicker>
+          </mat-form-field>
+          <div *ngIf="submitted && f.stardate.errors" style="color: red">
+            <div *ngIf="f.stardate.errors.required">
+              <p class="errormsgcss">Start Date is Required</p>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-4 mb-3">
+          <mat-form-field
+            color="primary"
+            appearance="outline"
+            style="width: 100%"
+          >
+            <mat-label>Select End date</mat-label>
+            <input
+              formControlName="enddat"
+              matInput
+              [matDatepicker]="dp2"
+              disabled
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="dp2"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #dp2 [disabled]="dealhide"></mat-datepicker>
+          </mat-form-field>
+          <div *ngIf="submitted && f.enddat.errors" style="color: red">
+            <div *ngIf="f.enddat.errors.required">
+              <p class="errormsgcss">End Date is Required</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6 mb-3">
+          <label class="lablecss">Deal Percentage</label>
+          <input
+            type="text"
+            formControlName="percentage"
+            class="form-control inputcss"
+          />
+          <div *ngIf="submitted && f.percentage.errors" style="color: red">
+            <div *ngIf="f.percentage.errors.required">
+              <p class="errormsgcss">Perecentage required</p>
+            </div>
+            <div *ngIf="f.percentage.errors.pattern">
+              Perecentage only Number
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6 mb-3">
+          <button type="submit" (click)="Submitform()" class="btn btn-warning">
+            Update Deal
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

@@ -41,6 +41,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
 
   categoryArray?: Category[];
   productArry?: Product[];
+  productData: Product;
 
   constructor(
     private fb: FormBuilder,

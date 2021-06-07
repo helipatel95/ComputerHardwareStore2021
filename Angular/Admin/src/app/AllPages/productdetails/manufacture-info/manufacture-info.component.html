@@ -1,0 +1,43 @@
+<form [formGroup]="manufactureInfoForm">
+  <div class="row">
+    <div class="col-md-8">
+      <label for="exampleFormControlTextarea1">Enter Info</label>
+      <textarea
+        class="form-control"
+        formControlName="manufactureinfotitle"
+        rows="1"
+      ></textarea>
+      <div
+        *ngIf="submitted && f.manufactureinfotitle.errors"
+        style="color: red"
+      >
+        <div *ngIf="f.manufactureinfotitle.errors.required">
+          <p class="errormsgcss">Info is Required</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 endtext">
+      <label> </label>
+      <button type="submit" (click)="Submitform()" class="btn btn-warning">
+        Add
+      </button>
+    </div>
+  </div>
+</form>
+<div style="margin-top: 20px">
+  <ng-container *ngIf="manufactureinfo != 0">
+    <div class="row" *ngFor="let info of manufactureinfo">
+      <div class="col-md-8 centertext">
+        <p>{{ info }}</p>
+      </div>
+      <div class="col-md-4 centertext">
+        <mat-icon
+          aria-hidden="false"
+          (click)="delete(info)"
+          aria-label="Example home icon"
+          >delete</mat-icon
+        >
+      </div>
+    </div>
+  </ng-container>
+</div>

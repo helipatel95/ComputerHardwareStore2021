@@ -1,0 +1,66 @@
+<h2 mat-dialog-title>Answer Some Questions..</h2>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="questionForm" class="padding5">
+        <div class="row">
+            <div class="col-md-12">
+                <label class="lablecss">Please select the field </label>
+            </div>
+            <div class="col-md-12">
+                <select formControlName="category" class="selectcss" aria-label="Default select example">
+          <option *ngFor="let category of categoryArray" [ngValue]="category">
+            {{ category }}
+          </option>
+        </select>
+            </div>
+            <div class="col-md-12">
+                <div *ngIf="submitted && f.category.errors" style="color: red">
+                    <div *ngIf="f.category.errors.required">
+                        <p class="errormsgcss">Please Select Field</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 15px">
+            <div class="col-md-12">
+                <label class="lablecss">Speed</label>
+            </div>
+            <div class="col-md-12">
+                <select formControlName="speed" class="selectcss" aria-label="Default select example">
+          <option *ngFor="let speed of speedArray" [ngValue]="speed">
+            {{ speed }}
+          </option>
+        </select>
+            </div>
+            <div class="col-md-12">
+                <div *ngIf="submitted && f.speed.errors" style="color: red">
+                    <div *ngIf="f.speed.errors.required">
+                        <p class="errormsgcss">Please Select Category</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 15px">
+            <div class="col-md-12">
+                <label class="lablecss">Storage</label>
+            </div>
+            <div class="col-md-12">
+                <select formControlName="storage" class="selectcss" aria-label="Default select example">
+          <option *ngFor="let storage of storageArray" [ngValue]="storage">
+            {{ storage }}
+          </option>
+        </select>
+            </div>
+            <div class="col-md-12">
+                <div *ngIf="submitted && f.storage.errors" style="color: red">
+                    <div *ngIf="f.storage.errors.required">
+                        <p class="errormsgcss">Please Select Category</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" (click)="Submitform()" class="btn btn-warning" style="width: 100%; margin-top: 25px">
+      Add
+    </button>
+    </form>
+</mat-dialog-content>

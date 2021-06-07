@@ -23,7 +23,7 @@
             <div class="subiteamcss" *ngFor="let category of categoryArray; index as i; first as isFirst" (click)="gotocategory(category)">
                 <div class="itemcard">
                     <div>
-                        <img [src]="category.imagepath" width="30px" height="30px" class="d-inline-block align-top" alt="image" />
+                        <img [src]="category.imagepath" width="20px" height="20px" class="d-inline-block align-top" alt="image" />
                     </div>
                     <div style="margin-left: 5%">{{ category.categoryname }}</div>
                 </div>
@@ -31,11 +31,11 @@
             <div class="titlecss" style="margin-top: 10%" (click)="gotoassembly()">
                 <h3>Create Your Own</h3>
             </div>
-            <div class="titlecss">
+            <div class="titlecss" (click)="gotoOrderhistory()">
                 <h3>All Order</h3>
             </div>
-            <div class="titlecss">
-                <h3>Profile</h3>
+            <div class="titlecss" (click)="aboutus()">
+                <h3>About Us</h3>
             </div>
             <div class="titlecss">
                 <h3>Logout / Signin</h3>
@@ -61,9 +61,9 @@
                 </div>
                 <form class="form-inline mx-auto">
                     <div class="input-group" style="width: 80%">
-                        <input type="text" class="form-control" placeholder="Search this blog" />
+                        <input type="text" class="form-control" [(ngModel)]="searchtext" [ngModelOptions]="{ standalone: true }" placeholder="Search By Product Name" />
                         <div class="input-group-append">
-                            <button class="btn btn-secondary" type="button">
+                            <button class="btn btn-secondary" type="button" (click)="searchPage()">
                 <i class="fa fa-search"></i>
               </button>
                         </div>

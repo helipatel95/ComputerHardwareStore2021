@@ -1,36 +1,54 @@
 <div class="container-fluid" style="margin-top: 2%">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="cardmain">
-                <div class="row">
-                    <div class="titleform">
-                        <b>Product</b>
-                    </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="cardmain">
+        <div class="row">
+          <div class="titleform">
+            <b>Product</b>
+          </div>
+        </div>
+        <div class="row">
+          <form [formGroup]="productForm" style="padding: 2%">
+            <div class="row">
+              <div class="col-md-4">
+                <label class="lablecss">Product Name</label>
+                <input
+                  type="text "
+                  formControlName="productName"
+                  class="form-control inputcss"
+                />
+                <div
+                  *ngIf="submitted && f.productName.errors"
+                  style="color: red"
+                >
+                  <div *ngIf="f.productName.errors.required">
+                    <p class="errormsgcss">Product Name is required</p>
+                  </div>
                 </div>
-                <div class="row">
-                    <form [formGroup]="productForm" style="padding: 2%">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <label class="lablecss">Product Name</label>
-                                <input type="text " formControlName="productName" class="form-control inputcss" />
-                                <div *ngIf="submitted && f.productName.errors" style="color: red">
-                                    <div *ngIf="f.productName.errors.required">
-                                        <p class="errormsgcss">Product Name is required</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <label class="lablecss">Produt Brand</label>
-                                <input type="text " formControlName="produtBrand" class="form-control inputcss" />
-                                <div *ngIf="submitted && f.produtBrand.errors" style="color: red">
-                                    <div *ngIf="f.produtBrand.errors.required">
-                                        <p class="errormsgcss">Produt Brand is required</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <label class="lablecss">Produt Category</label>
-                                <select formControlName="categoryId" class="form-select" aria-label="Default select example">
+              </div>
+              <div class="col-md-4">
+                <label class="lablecss">Produt Brand</label>
+                <input
+                  type="text "
+                  formControlName="produtBrand"
+                  class="form-control inputcss"
+                />
+                <div
+                  *ngIf="submitted && f.produtBrand.errors"
+                  style="color: red"
+                >
+                  <div *ngIf="f.produtBrand.errors.required">
+                    <p class="errormsgcss">Produt Brand is required</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label class="lablecss">Produt Category</label>
+                <select
+                  formControlName="categoryId"
+                  class="form-select"
+                  aria-label="Default select example"
+                >
                   <option
                     *ngFor="let category of categoryArray"
                     [ngValue]="category.id"
@@ -38,44 +56,69 @@
                     {{ category.categoryname }}
                   </option>
                 </select>
-                                <div *ngIf="submitted && f.categoryId.errors" style="color: red">
-                                    <div *ngIf="f.categoryId.errors.required">
-                                        <p class="errormsgcss">Please Select Category</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <label class="lablecss">Model Number</label>
-                                <input type="text " formControlName="produtModelNo" class="form-control inputcss" />
-                                <div *ngIf="submitted && f.produtModelNo.errors" style="color: red">
-                                    <div *ngIf="f.produtModelNo.errors.required">
-                                        <p class="errormsgcss">Model No is Required</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <label class="lablecss">Product Color</label>
-                                <input type="text " formControlName="productcolor" class="form-control inputcss" />
-                                <div *ngIf="submitted && f.productcolor.errors" style="color: red">
-                                    <div *ngIf="f.productcolor.errors.required">
-                                        <p class="errormsgcss">Product Color is required</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <label class="lablecss">Product Price</label>
-                                <input type="text " formControlName="productPrice" class="form-control inputcss" />
-                                <div *ngIf="submitted && f.productPrice.errors" style="color: red">
-                                    <div *ngIf="f.productPrice.errors.required">
-                                        <p class="errormsgcss">Product Price is required</p>
-                                    </div>
-                                    <div *ngIf="f.productPrice.errors.pattern">
-                                        Product Price only Number
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="exampleFormControlTextarea1">Product description</label
+                <div
+                  *ngIf="submitted && f.categoryId.errors"
+                  style="color: red"
+                >
+                  <div *ngIf="f.categoryId.errors.required">
+                    <p class="errormsgcss">Please Select Category</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label class="lablecss">Model Number</label>
+                <input
+                  type="text "
+                  formControlName="produtModelNo"
+                  class="form-control inputcss"
+                />
+                <div
+                  *ngIf="submitted && f.produtModelNo.errors"
+                  style="color: red"
+                >
+                  <div *ngIf="f.produtModelNo.errors.required">
+                    <p class="errormsgcss">Model No is Required</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label class="lablecss">Product Color</label>
+                <input
+                  type="text "
+                  formControlName="productcolor"
+                  class="form-control inputcss"
+                />
+                <div
+                  *ngIf="submitted && f.productcolor.errors"
+                  style="color: red"
+                >
+                  <div *ngIf="f.productcolor.errors.required">
+                    <p class="errormsgcss">Product Color is required</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label class="lablecss">Product Price</label>
+                <input
+                  type="text "
+                  formControlName="productPrice"
+                  class="form-control inputcss"
+                />
+                <div
+                  *ngIf="submitted && f.productPrice.errors"
+                  style="color: red"
+                >
+                  <div *ngIf="f.productPrice.errors.required">
+                    <p class="errormsgcss">Product Price is required</p>
+                  </div>
+                  <div *ngIf="f.productPrice.errors.pattern">
+                    Product Price only Number
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label for="exampleFormControlTextarea1"
+                  >Product description</label
                 >
                 <textarea
                   class="form-control"
@@ -130,6 +173,96 @@
             (techInfoChanged)="techInfoChangedHandler($event)"
           >
           </app-tech-and-spec>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 2%">
+    <div class="col-md-12">
+      <div class="cardmain">
+        <div class="row">
+          <div class="titleform">
+            <b>All Images</b>
+          </div>
+        </div>
+        <div class="row" style="padding: 2%">
+          <app-images-prducts
+            [picinfo]="imageInfo"
+            (picinfochange)="picInfoChangedHandler($event)"
+          >
+          </app-images-prducts>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 2%" *ngIf="dealInfo">
+    <div class="col-md-12">
+      <div class="cardmain">
+        <div class="row">
+          <div class="titleform">
+            <b>Deal Information</b>
+          </div>
+        </div>
+        <div class="row" style="padding: 2%">
+          <app-deal-info
+            [dealinfo]="dealInfo"
+            (dealInfoChanged)="dealInfoChangedHandler($event)"
+          >
+          </app-deal-info>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 2%">
+    <div class="col-md-12">
+      <div class="cardmain">
+        <div class="row">
+          <div class="titleform">
+            <b>All Manufacture Info</b>
+          </div>
+        </div>
+        <div class="row" style="padding: 2%">
+          <app-manufacture-info
+            [manufactureinfo]="manufactureInfo"
+            (manufactureinfochange)="manufactureInfoChangedHandler($event)"
+          >
+          </app-manufacture-info>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 2%">
+    <div class="col-md-12">
+      <div class="cardmain">
+        <div class="row">
+          <div class="titleform">
+            <b>Return Policy</b>
+          </div>
+        </div>
+        <div class="row" style="padding: 2%">
+          <app-return-info
+            [returninfo]="returnInfo"
+            (returninfochange)="returnInfoChangedHandler($event)"
+          >
+          </app-return-info>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 2%">
+    <div class="col-md-12">
+      <div class="cardmain">
+        <div class="row">
+          <div class="titleform">
+            <b>Product Tags</b>
+          </div>
+        </div>
+        <div class="row" style="padding: 2%">
+          <app-product-tags
+            [producttaginfo]="productTagsInfo"
+            (producttaginfochange)="producttagInfoChangedHandler($event)"
+          >
+          </app-product-tags>
         </div>
       </div>
     </div>

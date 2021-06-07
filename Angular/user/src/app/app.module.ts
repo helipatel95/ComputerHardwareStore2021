@@ -23,6 +23,8 @@ import { AiPopupComponent } from './AllPages/ai-popup/ai-popup.component';
 import { AssemblyserviceService } from './services/assemblyservice/assemblyservice.service';
 import { AssembleyProductPopupComponent } from './AllPages/assembley-product-popup/assembley-product-popup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OrderserviceService } from './services/orderservice/orderservice.service';
+
 
 @NgModule({
   declarations: [
@@ -52,6 +54,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AddtocartService,
     InvoiceserviceService,
     AssemblyserviceService,
+    OrderserviceService,
   ],
   bootstrap: [AppComponent],
 })

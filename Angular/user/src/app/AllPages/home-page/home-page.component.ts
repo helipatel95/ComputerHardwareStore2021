@@ -7,6 +7,7 @@ import Category from 'src/app/shared/AllPojos/category';
 import { Router } from '@angular/router';
 import User from 'src/app/shared/AllPojos/Userpojo';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import Deal from 'src/app/shared/AllPojos/deal';
 
 @Component({
   selector: 'app-home-page',
@@ -140,6 +141,11 @@ export class HomePageComponent implements OnInit {
         );
         console.log(this.dealArray);
       });
+  }
+
+  gotoproductspage(deal: Deal){
+    let url = 'Dashboard/allproducts/deal/' + deal.id;
+    this.router.navigate([url]);
   }
   getAllcategories() {
     this.catregoryservice

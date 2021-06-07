@@ -16,6 +16,8 @@ import { AuthService } from './services/auth/auth.service';
 import { CategoryService } from './services/category/category.service';
 import { ProductsService } from './services/products/products.service';
 import { DealService } from './services/deal/deal.service';
+import { UploadimageService } from './services/uploadimage/uploadimage.service';
+import { AssemblyserviceService } from './services/assemblyservice/assemblyservice.service';
 
 @NgModule({
   declarations: [AppComponent, AdmindashboardComponent, AuthdashComponent],
@@ -28,7 +30,14 @@ import { DealService } from './services/deal/deal.service';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
   ],
-  providers: [AuthService, CategoryService, ProductsService, DealService],
+  providers: [
+    AuthService,
+    CategoryService,
+    ProductsService,
+    DealService,
+    UploadimageService,
+    AssemblyserviceService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

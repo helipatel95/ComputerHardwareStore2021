@@ -83,10 +83,10 @@
                             <p>
                                 {{ deal.startdate | date: "yyyy-MM-dd" }} - {{ deal.enddate | date: "yyyy-MM-dd" }}
                             </p>
-                            <p style="color: #ffc107">More Details</p>
+                            <p style="color: #ffc107" (click)="gotoproductspage(deal)">More Details</p>
                         </div>
                         <div class="imagecontainer">
-                            <img src="../../../assets/images/deal.png" style="width: 500px; height: 500px" />
+                            <img [src]="deal.imagepath" style="width: 400px; height: 400px" />
                         </div>
                     </div>
                 </div>
@@ -103,10 +103,10 @@
                             <p>
                                 {{ deal.startdate | date: "yyyy-MM-dd" }} - {{ deal.enddate | date: "yyyy-MM-dd" }}
                             </p>
-                            <p style="color: #ffc107">More Details</p>
+                            <p style="color: #ffc107" (click)="gotoproductspage(deal)">More Details</p>
                         </div>
                         <div class="imagecontainer">
-                            <img src="../../../assets/images/deal.png" style="width: 500px; height: 500px" />
+                            <img [src]="deal.imagepath" style="width: 400px; height: 400px" />
                         </div>
                     </div>
                 </div>
@@ -128,7 +128,7 @@
 <div style="position: relative" *ngIf="categoryArray?.length > 0">
     <h1 class="mx-3 mt-5">All Categories</h1>
     <header>
-        <p *ngIf="categoryArray?.length > 9">
+        <p *ngIf="categoryArray?.length > 8">
             <span class="fa fa-chevron-circle-left leftArrow" style="color: black; font-size: 30px" aria-hidden="true" (click)="left_mover()"></span>
             <span class="fa fa-chevron-circle-right rightArrow" style="color: black; font-size: 30px" aria-hidden="true" (click)="right_mover()"></span>
         </p>

@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { AuthdashRoutingModule } from './authdash-routing';
 import { LoginComponent } from 'src/app/AllPages/login/login.component';
 import { MaterialModule } from 'src/app/Shared/Modules/material/material.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from 'src/app/AllPages/signup/signup.component';
 
 @NgModule({
@@ -12,6 +12,7 @@ import { SignupComponent } from 'src/app/AllPages/signup/signup.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    FormsModule,
     RouterModule.forChild(AuthdashRoutingModule),
     MaterialModule,
   ],

@@ -97,13 +97,14 @@ section::-webkit-scrollbar {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 150px;
+    width: 120px;
     margin-left: 3%;
+    padding: 2%;
 }
 
 .imagedivofcategory {
     width: 100%;
-    height: 150px;
+    height: 120px;
     overflow: hidden;
 }
 

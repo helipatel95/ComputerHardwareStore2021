@@ -14,6 +14,7 @@ declare var $: any;
 export class DashboardComponent implements OnInit {
   categoryArray: any = [];
   userdara: User = null;
+  searchtext: string = '';
   constructor(
     public catregoryservice: CategoryService,
     public router: Router,
@@ -49,6 +50,21 @@ export class DashboardComponent implements OnInit {
 
   gotoassembly() {
     let url = 'Dashboard/Listofassembly';
+    this.router.navigate([url]);
+  }
+  gotoOrderhistory() {
+    let url = 'Dashboard/Orderhistory';
+    this.router.navigate([url]);
+  }
+
+  searchPage() {
+    if (this.searchtext) {
+      let url = 'Dashboard/allproducts/search/' + this.searchtext;
+      this.router.navigate([url]);
+    }
+  }
+  aboutus() {
+    let url = 'Dashboard/Aboutus';
     this.router.navigate([url]);
   }
 

@@ -8,6 +8,9 @@ import { MatSort } from '@angular/material/sort';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { map } from 'rxjs/operators';
 import Category from 'src/app/Shared/AllPojos/category';
+import { UploadimageService } from 'src/app/services/uploadimage/uploadimage.service';
+import { Observable } from 'rxjs';
+import { catchError, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-category',
@@ -24,6 +27,13 @@ export class CategoryComponent implements OnInit, AfterViewInit {
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   tobeUpadateCategory: Category = new Category();
+  uploadedImagePath: string = '';
+
+  filetobeupload: any;
+  fileToUpload: File = null;
+  uploadProgress$: Observable<number>;
+
+  downloadedurl: string = '';
 
   @ViewChild(MatSort) sort: MatSort;
 
@@ -31,11 +41,13 @@ export class CategoryComponent implements OnInit, AfterViewInit {
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    public catregoryservice: CategoryService
+    public catregoryservice: CategoryService,
+    public storeageservice: UploadimageService
   ) {
     this.dataSource = new MatTableDataSource(this.categoryArray);
     this.getAllCategories();
   }
+
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -81,10 +93,48 @@ export class CategoryComponent implements OnInit, AfterViewInit {
     if (this.categoryForm.invalid) {
       return;
     } else {
+      if (this.fileToUpload) {
+        if (this.button == 'Add') {
+          this.dofileupload();
+        } else {
+          this.updateFileUpload();
+        }
+      } else {
+        if (this.button == 'Modify') {
+          let categorie: Category = new Category();
+          categorie.categoryname = this.categoryForm.get('categoryName').value;
+          this.addCategory(categorie);
+        }
+      }
+    }
+  }
+
+  updateFileUpload() {
+    if (this.downloadedurl) {
+      this.storeageservice.deletefile(this.downloadedurl);
+    }
+    this.dofileupload();
+  }
+
+  dofileupload() {
+    const mediaFolderPath = `categories/`;
+
+    const { downloadUrl$, uploadProgress$ } =
+      this.storeageservice.uploadFileAndGetMetadata(
+        mediaFolderPath,
+        this.fileToUpload
+      );
+
+    this.uploadProgress$ = uploadProgress$;
+
+    downloadUrl$.subscribe((downloadUrl) => {
+      this.fileToUpload = null;
       let categorie: Category = new Category();
+      categorie.imagepath = downloadUrl;
+      this.tobeUpadateCategory.imagepath = downloadUrl;
       categorie.categoryname = this.categoryForm.get('categoryName').value;
       this.addCategory(categorie);
-    }
+    });
   }
 
   editdata(category: Category) {
@@ -92,8 +142,14 @@ export class CategoryComponent implements OnInit, AfterViewInit {
     this.categoryForm.setValue({
       categoryName: category.categoryname,
     });
+    this.downloadedurl = category.imagepath;
     this.button = 'Modify';
   }
+
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+  }
+
   delete(category: Category) {
     category.isdeleted = true;
     category.isActive = false;
@@ -114,6 +170,7 @@ export class CategoryComponent implements OnInit, AfterViewInit {
     } else {
       this.tobeUpadateCategory.categoryname =
         this.categoryForm.get('categoryName').value;
+
       this.catregoryservice
         .update(this.tobeUpadateCategory)
         .then((result) => {
@@ -123,6 +180,7 @@ export class CategoryComponent implements OnInit, AfterViewInit {
         })
         .catch((err) => {});
     }
+    
   }
 
   edit(data) {

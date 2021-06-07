@@ -21,6 +21,11 @@ export class ProductdetailsComponent implements OnInit {
 
   moreInfo: any;
   techInfo: any;
+  imageInfo: any;
+  dealInfo: any;
+  manufactureInfo: any;
+  productTagsInfo: any;
+  returnInfo: any;
 
   constructor(
     private fb: FormBuilder,
@@ -82,6 +87,11 @@ export class ProductdetailsComponent implements OnInit {
     this.productData.categoryName = categoryname[0].categoryname;
     this.productData.moreInfo = this.moreInfo;
     this.productData.tecSpec = this.techInfo;
+    this.productData.productImages = this.imageInfo;
+    this.productData.manufactureInfo = this.manufactureInfo;
+    this.productData.productTag = this.productTagsInfo;
+    this.productData.returnPolicy = this.returnInfo;
+    this.productData = this.setdealData(this.productData);
     console.log(this.productData);
     this.productservice
       .update(this.productData)
@@ -90,6 +100,14 @@ export class ProductdetailsComponent implements OnInit {
         this.router.navigate([url], { replaceUrl: true });
       })
       .catch((err) => {});
+  }
+  setdealData(productData: Product): Product {
+    productData.discountId = this.dealInfo.discountId;
+    productData.discountName = this.dealInfo.discountName;
+    productData.discountPercentage = this.dealInfo.discountPercentage;
+    productData.startDate = this.dealInfo.startDate;
+    productData.enddate = this.dealInfo.enddate;
+    return productData;
   }
 
   getproductData(productid: string) {
@@ -120,6 +138,19 @@ export class ProductdetailsComponent implements OnInit {
           });
           this.moreInfo = this.productData.moreInfo;
           this.techInfo = this.productData.tecSpec;
+          this.imageInfo = this.productData.productImages;
+          this.returnInfo = this.productData.returnPolicy;
+          this.manufactureInfo = this.productData.manufactureInfo;
+          this.productTagsInfo = this.productData.productTag;
+          this.dealInfo = {
+            discountId: this.productData.discountId,
+            discountName: this.productData.discountName,
+            discountPercentage: this.productData.discountPercentage,
+            enddate: this.productData.enddate,
+            startDate: this.productData.startDate,
+            productPrice: this.productData.productPrice,
+          };
+          debugger;
         }
       });
   }
@@ -129,5 +160,20 @@ export class ProductdetailsComponent implements OnInit {
   }
   techInfoChangedHandler(techInfo: any) {
     this.techInfo = techInfo;
+  }
+  picInfoChangedHandler(imageInfo: any) {
+    this.imageInfo = imageInfo;
+  }
+  dealInfoChangedHandler(dealInfo: any) {
+    this.dealInfo = dealInfo;
+  }
+  manufactureInfoChangedHandler(manufactureInfo: any) {
+    this.manufactureInfo = manufactureInfo;
+  }
+  returnInfoChangedHandler(returnInfo: any) {
+    this.returnInfo = returnInfo;
+  }
+  producttagInfoChangedHandler(productTagInfo: any) {
+    this.productTagsInfo = productTagInfo;
   }
 }

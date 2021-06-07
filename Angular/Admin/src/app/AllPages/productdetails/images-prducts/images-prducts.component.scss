@@ -1,0 +1,16 @@
+.endtext {
+    display: flex;
+    align-items: flex-end;
+}
+
+.centertext {
+    display: flex;
+    align-items: center;
+}
+
+.flexdivparent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

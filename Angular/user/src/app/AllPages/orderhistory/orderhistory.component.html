@@ -1,0 +1,94 @@
+<div class="maincontent">
+    <div class="row">
+        <h2>
+            <b>All Your Orders</b>
+        </h2>
+    </div>
+    <div class="row cardcss" *ngFor="let invoice of invoiceArray; index as i; first as isFirst" style="margin-top: 15px">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="row">
+                        <h4 style="margin: 0%"><b>Order Date</b></h4>
+                    </div>
+                    <div class="row">
+                        <h5 style="margin: 0%">{{ invoice.invoicedate | date: "yyyy-MM-dd" }}</h5>
+                    </div>
+                </div>
+                <div class="col-md-4" style="text-align: center">
+                    <div class="row">
+                        <h4 style="margin: 0%"><b>Total Amount</b></h4>
+                    </div>
+                    <div class="row">
+                        <h5 style="margin: 0%; color: green">
+                            {{ invoice.invoiceamount }} $CAD
+                        </h5>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <h4 style="margin: 0%"><b>Order Number</b></h4>
+                    </div>
+                    <div class="row">
+                        <h5 style="margin: 0%; color: green">{{ invoice.invoiceid }}</h5>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row" *ngFor="let product of invoice.allproducts">
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="imagecontenier">
+                                <img [src]="product.product.productImages[0]" />
+                            </div>
+                        </div>
+                        <div class="col-md-10">
+                            <h2>
+                                <b>{{ product.product.productName }}</b>
+                            </h2>
+                            <p>Qty: 1</p>
+                            <p *ngIf="product.discountPercentage > 0">
+                                <s>{{ product.product.productPrice }}$</s> {{ product.product.discountPercentage }}%save
+                            </p>
+                            <p class="orignnaleprice">
+                                <b>{{
+                    getpercentage(
+                      product.product.productPrice,
+                      product.product.discountPercentage
+                    )
+                  }}$</b
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="row">
+            <h4 style="margin: 0%"><b>Ship To</b></h4>
+                        </div>
+                        <div class="row">
+                            <h5 style="margin: 0%">
+                                {{ invoice.deliveryAddress.firstnamedelivery }} {{ invoice.deliveryAddress.lastnamedelivery }}
+                            </h5>
+                        </div>
+                        <div class="row">
+                            <h5 style="margin: 0%">
+                                {{ invoice.deliveryAddress.streetnamedelivery }} #Apt {{ invoice.deliveryAddress.apartmentdelivery }}
+                            </h5>
+                        </div>
+                        <div class="row">
+                            <h5 style="margin: 0%">
+                                {{ invoice.deliveryAddress.citydelivery }} , {{ invoice.deliveryAddress.provicedelivery }}
+                            </h5>
+                        </div>
+                        <div class="row">
+                            <h5 style="margin: 0%">
+                                {{ invoice.deliveryAddress.postalcodedelivery }}
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -7,6 +7,7 @@ import { AuthService } from '../auth/auth.service';
   providedIn: 'root',
 })
 export class CategoryService {
+  
   private dbPath = '/allcategories';
 
   tutorialsRef: AngularFireList<Category>;

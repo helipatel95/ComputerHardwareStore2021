@@ -10,7 +10,7 @@
                             <td style="width: 20%">
                                 <b>Invoice Date</b>
                             </td>
-                            <td>{{invoicedate | date: "yyyy-MM-dd"}}</td>
+                            <td>{{ invoicedate | date: "yyyy-MM-dd" }}</td>
                         </tr>
                         <tr>
                             <td style="width: 20%">
@@ -192,17 +192,25 @@
                                 <b>{{ cart.product.productName }}</b>
                             </h2>
                             <p>Qty: 1</p>
-                            <p>
-                                <s>{{ cart.product.productPrice }}$</s> 25%save
+                            <p *ngIf="cart.product.discountPercentage > 0">
+                                <s>{{ cart.product.productPrice }}$</s> {{ cart.product.discountPercentage }}%save
                             </p>
-                            <p class="orignnaleprice">{{ cart.product.productPrice }}$ CAD</p>
-                        </div>
-                    </div>
-                </mat-card>
-                <mat-card *ngIf="cartArray?.length == 0">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h2><b>No data in Shopping Cart</b></h2>
+                            <p class="orignnaleprice">
+                                <b>{{
+                    getpercentage(
+                      cart.product.productPrice,
+                      cart.product.discountPercentage
+                    )
+                  }}$</b
+                >
+              </p>
+            </div>
+          </div>
+        </mat-card>
+        <mat-card *ngIf="cartArray?.length == 0">
+          <div class="row">
+            <div class="col-md-12">
+              <h2><b>No data in Shopping Cart</b></h2>
                         </div>
                     </div>
                 </mat-card>

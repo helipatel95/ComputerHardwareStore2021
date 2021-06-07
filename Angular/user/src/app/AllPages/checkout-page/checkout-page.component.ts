@@ -77,6 +77,13 @@ export class CheckoutPageComponent implements OnInit {
     return this.shippingform.controls;
   }
 
+  getpercentage(price: any, percentage: any) {
+    const amount: any = (percentage / 100) * price;
+    const finalprice: any = price - amount;
+
+    return finalprice;
+  }
+
   checkout() {
     this.submitted = true;
     if (this.billingForm.invalid) {
@@ -118,6 +125,13 @@ export class CheckoutPageComponent implements OnInit {
       if (discound === 0) {
         this.totalprice = this.totalprice + productPrice;
         debugger;
+      } else {
+        this.totalprice =
+          this.totalprice +
+          this.getpercentage(
+            this.cartArray[index].product.productPrice,
+            this.cartArray[index].product.discountPercentage
+          );
       }
     }
   }

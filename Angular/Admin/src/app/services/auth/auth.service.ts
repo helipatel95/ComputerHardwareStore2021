@@ -39,7 +39,7 @@ export class AuthService {
   dologin(loginData: any) {
     return this.afAuth.signInWithEmailAndPassword(
       loginData.email,
-      loginData.password
+      loginData.password 
     );
   }
 

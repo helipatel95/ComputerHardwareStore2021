@@ -13,6 +13,12 @@ import { ProductdetailsComponent } from 'src/app/AllPages/productdetails/product
 import { MoreInfoPageComponent } from 'src/app/AllPages/productdetails/more-info-page/more-info-page.component';
 import { TechAndSpecComponent } from 'src/app/AllPages/productdetails/tech-and-spec/tech-and-spec.component';
 import { DealsComponent } from 'src/app/AllPages/deals/deals.component';
+import { ImagesPrductsComponent } from 'src/app/AllPages/productdetails/images-prducts/images-prducts.component';
+import { DealInfoComponent } from 'src/app/AllPages/productdetails/deal-info/deal-info.component';
+import { ManufactureInfoComponent } from 'src/app/AllPages/productdetails/manufacture-info/manufacture-info.component';
+import { ProductTagsComponent } from 'src/app/AllPages/productdetails/product-tags/product-tags.component';
+import { ReturnInfoComponent } from 'src/app/AllPages/productdetails/return-info/return-info.component';
+import { AssemblypageComponent } from 'src/app/AllPages/assemblypage/assemblypage.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +29,12 @@ import { DealsComponent } from 'src/app/AllPages/deals/deals.component';
     MoreInfoPageComponent,
     TechAndSpecComponent,
     DealsComponent,
+    ImagesPrductsComponent,
+    DealInfoComponent,
+    ManufactureInfoComponent,
+    ProductTagsComponent,
+    ReturnInfoComponent,
+    AssemblypageComponent,
   ],
   imports: [
     CommonModule,
